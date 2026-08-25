@@ -1,69 +1,103 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useRef } from "react";
+import dynamic from "next/dynamic";
+import LenisProvider from "@/components/providers/LenisProvider";
+import LoadingScreen from "@/components/ui/LoadingScreen";
+import HeroSection from "@/components/landing/HeroSection";
+import FeatureSection from "@/components/landing/FeatureSection";
+import FinalCallToAction from "@/components/landing/FinalCallToAction";
+
+// Dynamically import ScrollCanvas with SSR disabled
+const ScrollCanvas = dynamic(() => import("@/components/ui/ScrollCanvas"), {
+  ssr: false,
+});
 
 export default function Home() {
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [isCanvasReady, setIsCanvasReady] = useState(false);
+  const startTimeRef = useRef<number>(Date.now());
+
+  const handleCanvasReady = () => {
+    const elapsed = Date.now() - startTimeRef.current;
+    const MIN_DURATION = 1000; // 1.0 second minimum loading duration
+    const remainingTime = Math.max(0, MIN_DURATION - elapsed);
+
+    setTimeout(() => {
+      setIsCanvasReady(true);
+    }, remainingTime);
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <LenisProvider>
+      <main className="relative w-full min-h-screen">
+        <LoadingScreen 
+          progress={loadingProgress} 
+          isVisible={!isCanvasReady} 
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* 3D Canvas Background (z-[-10]) */}
+        <ScrollCanvas 
+          onProgress={setLoadingProgress} 
+          onReady={handleCanvasReady} 
+        />
+
+        {/* Shiny Black Tint Overlay (z-[0]) */}
+        <div className="fixed inset-0 z-[0] pointer-events-none bg-black/30 bg-gradient-to-b from-black/80 via-transparent to-black/80" />
+
+        {/* Content Overlay Track (z-[10]) */}
+        <div className="relative z-[10] pointer-events-none">
+          
+          {/* Milestone 1 */}
+          <HeroSection />
+          
+          {/* Milestone 2 */}
+          <FeatureSection 
+            headline="Supercharge Your Preparation" 
+            subHeadline="Stop guessing what the exam will feel like. Our platform is built to eliminate test anxiety and optimize your revision through a blend of technology and human expertise."
+            alignment="left"
+            features={[
+              {
+                title: "Flawless CBT Simulation",
+                description: "Practice in an environment that perfectly mirrors real-world testing interfaces. Familiarity breeds confidence."
+              },
+              {
+                title: "AI-Powered Revision",
+                description: "Our intelligent engine analyzes your test patterns, identifies your weak points, and builds custom revision paths to maximize your score."
+              },
+              {
+                title: "Expert Mentor Guides",
+                description: "Never feel lost. Connect with top-tier mentors who provide personalized strategies, emotional support, and doubt resolution."
+              }
+            ]}
+          />
+
+          {/* Milestone 3 */}
+          <FeatureSection 
+            headline="Empower Your Institute with Next-Gen Tools" 
+            subHeadline="Bring your classroom into the future. We provide educational institutes with the infrastructure to track, manage, and elevate their students' success at scale."
+            alignment="right"
+            features={[
+              {
+                title: "Centralized Command Center",
+                description: "Onboard your students effortlessly and track their progress through comprehensive, real-time dashboards."
+              },
+              {
+                title: "Actionable AI Insights",
+                description: "Let AI do the heavy lifting. Get detailed analytics on cohort performance to know exactly where your teaching interventions are needed most."
+              },
+              {
+                title: "Scale Your Mentorship",
+                description: "Assign your own faculty or tap into our network of expert mentors to guide your students individually without overwhelming your staff."
+              }
+            ]}
+          />
+
+          {/* Milestone 4 */}
+          <FinalCallToAction />
+
         </div>
       </main>
-    </div>
+    </LenisProvider>
   );
 }
