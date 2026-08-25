@@ -6,12 +6,35 @@ import Link from "next/link";
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) {
+    if (!email.trim()) return;
+
+    setIsSubmitting(true);
+    setErrorMsg("");
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ""}/api/newsletter`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to subscribe.");
+      }
+
       setSubscribed(true);
       setEmail("");
+    } catch (error: any) {
+      setErrorMsg(error.message || "Unable to connect to the server.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -40,7 +63,7 @@ export default function Footer() {
         { name: "About Us", href: "/" },
         { name: "Careers", href: "/" },
         { name: "Press & News", href: "/" },
-        { name: "Contact Support", href: "/" },
+        { name: "Contact Support", href: "/contact-us" },
       ],
     },
     {
@@ -70,14 +93,6 @@ export default function Footer() {
                 Experience the real exam before the actual exam. Optimizing preparation through AI simulation and expert human mentorship.
               </p>
             </div>
-
-            {/* System Status Pill */}
-            <div className="mt-8 inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/5 border border-white/10 w-fit">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
-              <span className="text-xs font-medium text-white/80">
-                All Systems Operational
-              </span>
-            </div>
           </div>
 
           {/* Newsletter Box */}
@@ -96,22 +111,37 @@ export default function Footer() {
                 ✓ Thank you for subscribing! Check your inbox soon.
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  required
-                  className="flex-1 px-5 py-3.5 rounded-full bg-black/60 border border-white/15 text-white placeholder-white/40 text-sm focus:outline-none focus:border-white/40 transition-colors"
-                />
-                <button
-                  type="submit"
-                  className="px-7 py-3.5 bg-white text-black font-medium text-sm rounded-full hover:bg-white/90 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] whitespace-nowrap"
-                >
-                  Join Newsletter
-                </button>
-              </form>
+              <div className="space-y-2">
+                {errorMsg && (
+                  <div className="px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-medium">
+                    {errorMsg}
+                  </div>
+                )}
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email address"
+                    required
+                    className="flex-1 px-5 py-3.5 rounded-full bg-black/60 border border-white/15 text-white placeholder-white/40 text-sm focus:outline-none focus:border-white/40 transition-colors"
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="px-7 py-3.5 bg-white text-black font-medium text-sm rounded-full hover:bg-white/90 disabled:bg-white/50 disabled:cursor-not-allowed transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] whitespace-nowrap flex items-center justify-center gap-2"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                        <span>Joining...</span>
+                      </>
+                    ) : (
+                      <span>Join Newsletter</span>
+                    )}
+                  </button>
+                </form>
+              </div>
             )}
           </div>
         </div>

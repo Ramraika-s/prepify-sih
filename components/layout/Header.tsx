@@ -50,12 +50,18 @@ export default function Header() {
 
           {/* Right Action Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            <button className="text-sm font-medium text-white/80 hover:text-white transition-colors px-3 py-2">
+            <Link 
+              href="/sign-in"
+              className="text-sm font-medium text-white/80 hover:text-white transition-colors px-3 py-2"
+            >
               Sign In
-            </button>
-            <button className="px-5 py-2.5 bg-white text-black font-medium text-sm rounded-full hover:bg-white/90 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] transform hover:scale-105">
-              Start Free Trial
-            </button>
+            </Link>
+            <Link
+              href="/contact-us"
+              className="px-5 py-2.5 bg-white text-black font-medium text-sm rounded-full hover:bg-white/90 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] transform hover:scale-105 inline-block text-center"
+            >
+              Contact Us
+            </Link>
           </div>
 
           {/* Mobile Hamburger Button */}
@@ -146,12 +152,20 @@ export default function Header() {
             </nav>
 
             <div className="flex flex-col gap-4">
-              <button className="w-full py-4 text-center border border-white/20 text-white font-medium rounded-full hover:bg-white/10 transition-colors">
+              <Link
+                href="/sign-in"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full py-4 text-center border border-white/20 text-white font-medium rounded-full hover:bg-white/10 transition-colors block"
+              >
                 Sign In
-              </button>
-              <button className="w-full py-4 text-center bg-white text-black font-medium rounded-full hover:bg-white/90 transition-all shadow-[0_0_30px_rgba(255,255,255,0.3)]">
-                Start Free Trial
-              </button>
+              </Link>
+              <Link
+                href="/contact-us"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full py-4 text-center bg-white text-black font-medium rounded-full hover:bg-white/90 transition-all shadow-[0_0_30px_rgba(255,255,255,0.3)] block"
+              >
+                Contact Us
+              </Link>
             </div>
           </motion.div>
         )}
