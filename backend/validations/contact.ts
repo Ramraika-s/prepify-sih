@@ -10,8 +10,7 @@ export const contactSchema = z.object({
     "Institute Partnership",
     "Billing & Subscriptions",
   ], {
-    required_error: "Please select a valid topic",
-    invalid_type_error: "Please select a valid topic",
+    message: "Please select a valid topic",
   }),
   message: z.string().trim().min(10, "Message must be at least 10 characters").max(2000, "Message is too long"),
 });
