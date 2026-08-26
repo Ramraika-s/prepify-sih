@@ -16,20 +16,20 @@ const app: Application = express();
 app.set('trust proxy', 1);
 
 // Middleware
-const allowedOrigin = process.env.SITE_URL;
+const allowedOrigins = process.env.SITE_URL ? process.env.SITE_URL.split(',').map(s => s.trim()) : [];
 
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
-    
+
     // Allow localhost for local development
     if (/^https?:\/\/localhost(:\d+)?$/.test(origin)) {
       return callback(null, true);
     }
-    
-    // Allow the specific SITE_URL from env
-    if (origin === allowedOrigin) {
+
+    // Allow the specific SITE_URLs or any shivamramraika.com subdomain
+    if (allowedOrigins.includes(origin) || origin.endsWith('shivamramraika.com')) {
       return callback(null, true);
     }
 
