@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { supabaseResponse, user } = await updateSession(request);
   const { pathname } = request.nextUrl;
 
-  const session = user ? { role: user.user_metadata?.role } : null;
+  const session = user ? { role: user.app_metadata?.role || user.user_metadata?.role } : null;
 
   // Guest-only auth pages
   const isAuthPage = pathname.startsWith("/sign-in") || pathname.startsWith("/sign-up");

@@ -55,19 +55,19 @@ export default function Footer() {
     {
       title: "Company",
       links: [
-        { name: "About Us", href: "/" },
-        { name: "Careers", href: "/" },
-        { name: "Press & News", href: "/" },
+        { name: "About Us", href: "/about" },
+        { name: "Careers", href: "/careers" },
+        { name: "Press & News", href: "/press" },
         { name: "Contact Support", href: "/contact-us" },
       ],
     },
     {
       title: "Legal & Trust",
       links: [
-        { name: "Privacy Policy", href: "/" },
-        { name: "Terms of Service", href: "/" },
-        { name: "Security Audit", href: "/" },
-        { name: "Compliance", href: "/" },
+        { name: "Privacy Policy", href: "/privacy" },
+        { name: "Terms of Service", href: "/terms" },
+        { name: "Security Audit", href: "/security" },
+        { name: "Compliance", href: "/compliance" },
       ],
     },
   ];

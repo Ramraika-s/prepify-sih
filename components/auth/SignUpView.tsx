@@ -58,7 +58,7 @@ export default function SignUpView() {
     try {
       const result = await signUp(payload);
 
-      if (result.error) {
+      if (!result.success) {
         setErrorMessage(result.error);
         setIsLoading(false);
         return;

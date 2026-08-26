@@ -2,35 +2,37 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import { onboardingSchema } from "@/lib/validations/auth";
+import { ActionResponse } from "@/lib/types/action";
 
-export async function completeOnboarding(data: {
-  goal: "neet_ug" | "neet_pg";
-  academic_stage: string | null;
-  exam_year: number | null;
-  language: string;
-  weak_subjects: string[];
-}) {
-  const supabase = await createClient();
-  const { data: { session }, error: authError } = await supabase.auth.getSession();
+export async function completeOnboarding(payload: unknown): Promise<ActionResponse> {
+  try {
+    const parsed = onboardingSchema.safeParse(payload);
+    if (!parsed.success) {
+      return { success: false, error: "Validation failed", validationErrors: parsed.error.issues };
+    }
 
-  if (authError || !session) {
-    return { error: "Not authenticated" };
+    const supabase = await createClient();
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+      return { success: false, error: "UNAUTHORIZED" };
+    }
+
+    // Wrap multi-table inserts into a single RPC for transaction safety
+    const { error } = await supabase.rpc("complete_onboarding", {
+      p_user_id: user.id,
+      p_profile_data: {},
+      p_preferences_data: parsed.data,
+    });
+
+    if (error) {
+      return { success: false, error: error.message };
+    }
+
+    revalidatePath("/", "layout");
+    return { success: true, data: undefined };
+  } catch (error: any) {
+    return { success: false, error: error?.message || "An unexpected error occurred" };
   }
-
-  const { error } = await supabase.from("user_preferences").upsert({
-    user_id: session.user.id,
-    goal: data.goal,
-    academic_stage: data.academic_stage,
-    exam_year: data.exam_year,
-    language: data.language,
-    weak_subjects: data.weak_subjects,
-    onboarding_completed: true,
-  });
-
-  if (error) {
-    return { error: error.message };
-  }
-
-  revalidatePath("/", "layout"); // Revalidate the whole app to pick up new prefs
-  return { success: true };
 }

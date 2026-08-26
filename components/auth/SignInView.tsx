@@ -34,7 +34,7 @@ export default function SignInView() {
     try {
       const result = await signIn({ role, identifier, password });
 
-      if (result.error) {
+      if (!result.success) {
         setErrorMessage(result.error);
         setIsLoading(false);
         return;
@@ -43,7 +43,7 @@ export default function SignInView() {
       setIsLoading(false);
       setIsSuccess(true);
 
-      const redirectPath = `/dashboard/${result.role || role}`;
+      const redirectPath = `/dashboard/${result.data?.role || role}`;
 
       router.push(redirectPath);
     } catch (err) {

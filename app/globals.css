@@ -181,4 +181,4 @@ html.lenis, html.lenis body {
     mix-blend-mode: overlay;
     pointer-events: none;
   }
-}
+}@keyframes shimmer { 100% { transform: translateX(100%); } }

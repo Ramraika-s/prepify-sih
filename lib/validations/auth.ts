@@ -34,3 +34,13 @@ export type LoginInput = z.infer<typeof loginSchema>;
 export type RegisterStudentInput = z.infer<typeof registerStudentSchema>;
 export type RegisterInstituteInput = z.infer<typeof registerInstituteSchema>;
 export type RegisterMentorInput = z.infer<typeof registerMentorSchema>;
+
+export const onboardingSchema = z.object({
+  goal: z.enum(["neet_ug", "neet_pg"]),
+  academic_stage: z.string().nullable(),
+  exam_year: z.number().nullable(),
+  language: z.string(),
+  weak_subjects: z.array(z.string()),
+});
+
+export type OnboardingInput = z.infer<typeof onboardingSchema>;
