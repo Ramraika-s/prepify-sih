@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import BackgroundVideo from "@/components/ui/BackgroundVideo";
 import { contactSchema, type ContactFormData } from "@/lib/validations/contact";
+import { submitContactForm } from "@/app/actions/contact";
 
 export default function ContactView() {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -26,16 +27,15 @@ export default function ContactView() {
   const onSubmit = async (data: ContactFormData) => {
     setErrorMessage("");
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ""}/api/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+      const result = await submitContactForm({
+        first_name: data.firstName,
+        last_name: data.lastName,
+        email: data.email,
+        message: data.message,
       });
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || "Failed to send message. Please try again.");
+      if (result?.error) {
+        throw new Error(result.error);
       }
 
       setIsSuccess(true);

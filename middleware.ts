@@ -1,31 +1,12 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { jwtVerify } from "jose";
-
-const JWT_SECRET_STRING = process.env.JWT_SECRET || "prepify_super_secret_jwt_key_2026_production_grade_secure_token";
-const JWT_SECRET = new TextEncoder().encode(JWT_SECRET_STRING);
-const AUTH_COOKIE_NAME = "prepify_token";
-
-interface TokenPayload {
-  userId: string;
-  email: string;
-  role: "student" | "institute" | "mentor";
-}
-
-async function verifyEdgeToken(token: string): Promise<TokenPayload | null> {
-  try {
-    const { payload } = await jwtVerify(token, JWT_SECRET);
-    return payload as unknown as TokenPayload;
-  } catch (error) {
-    return null;
-  }
-}
+import { updateSession } from "@/lib/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
+  const { supabaseResponse, user } = await updateSession(request);
   const { pathname } = request.nextUrl;
-  const token = request.cookies.get(AUTH_COOKIE_NAME)?.value;
 
-  const session = token ? await verifyEdgeToken(token) : null;
+  const session = user ? { role: user.user_metadata?.role } : null;
 
   // Guest-only auth pages
   const isAuthPage = pathname.startsWith("/sign-in") || pathname.startsWith("/sign-up");
@@ -35,7 +16,7 @@ export async function middleware(request: NextRequest) {
       // Redirect signed-in user away from auth pages to their role portal
       return NextResponse.redirect(new URL(`/dashboard/${session.role}`, request.url));
     }
-    return NextResponse.next();
+    return supabaseResponse;
   }
 
   // Protected Dashboard Routes
@@ -64,13 +45,18 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return NextResponse.next();
+  return supabaseResponse;
 }
 
 export const config = {
   matcher: [
-    "/sign-in",
-    "/sign-up",
-    "/dashboard/:path*",
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * Feel free to modify this pattern to include more paths.
+     */
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 };

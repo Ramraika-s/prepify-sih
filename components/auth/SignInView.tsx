@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import BackgroundVideo from "@/components/ui/BackgroundVideo";
+import { signIn } from "@/app/actions/auth";
 
 type Role = "student" | "institute" | "mentor";
 
@@ -31,35 +32,18 @@ export default function SignInView() {
     setIsLoading(true);
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_API_URL || "";
-      const res = await fetch(`${backendUrl}/api/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          role,
-          identifier,
-          password,
-        }),
-      });
+      const result = await signIn({ role, identifier, password });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        setErrorMessage(data.error || "Authentication failed. Please check your credentials.");
+      if (result.error) {
+        setErrorMessage(result.error);
         setIsLoading(false);
         return;
-      }
-
-      // Store token on frontend domain for Next.js middleware
-      if (data.token) {
-        document.cookie = `prepify_token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax`;
       }
 
       setIsLoading(false);
       setIsSuccess(true);
 
-      const redirectPath = `/dashboard/${role}`;
+      const redirectPath = `/dashboard/${result.role || role}`;
 
       router.push(redirectPath);
     } catch (err) {

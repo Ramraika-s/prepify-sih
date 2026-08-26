@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import BackgroundVideo from "@/components/ui/BackgroundVideo";
+import { signUp } from "@/app/actions/auth";
 
 type Role = "student" | "institute" | "mentor";
 
@@ -55,25 +56,12 @@ export default function SignUpView() {
     };
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_API_URL || "";
-      const res = await fetch(`${backendUrl}/api/auth/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(payload),
-      });
+      const result = await signUp(payload);
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        setErrorMessage(data.error || "Registration failed. Please try again.");
+      if (result.error) {
+        setErrorMessage(result.error);
         setIsLoading(false);
         return;
-      }
-
-      // Store token on frontend domain for Next.js middleware
-      if (data.token) {
-        document.cookie = `prepify_token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax`;
       }
 
       setIsLoading(false);

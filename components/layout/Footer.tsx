@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { subscribeNewsletter } from "@/app/actions/newsletter";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -17,16 +18,10 @@ export default function Footer() {
     setErrorMsg("");
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ""}/api/newsletter`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
+      const result = await subscribeNewsletter(email);
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || "Failed to subscribe.");
+      if (result.error) {
+        throw new Error(result.error);
       }
 
       setSubscribed(true);
