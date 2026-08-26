@@ -104,7 +104,7 @@ export function NewTestClient() {
         instituteId,
         filters: type === "custom" ? { subjectIds: [subjectId], difficulties } : undefined,
       });
-      router.push(`/test/${attemptId}`);
+      router.push(`/test/${attemptId}/instructions`);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Could not build test");
     } finally {
