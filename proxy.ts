@@ -11,7 +11,7 @@ export async function proxy(request: NextRequest) {
   const redirectWithCookies = (url: URL) => {
     const res = NextResponse.redirect(url);
     // Forward the refreshed cookies to the redirect
-    supabaseResponse.cookies.getAll().forEach((cookie) => {
+    supabaseResponse.cookies.getAll().forEach((cookie: { name: string, value: string, [key: string]: any }) => {
       res.cookies.set(cookie.name, cookie.value, cookie);
     });
     return res;
@@ -33,23 +33,29 @@ export async function proxy(request: NextRequest) {
       return redirectWithCookies(new URL("/sign-in", request.url));
     }
 
-    if (pathname === "/dashboard") {
+    const isStudentRoute = pathname.startsWith("/dashboard/student");
+    const isInstituteRoute = pathname.startsWith("/dashboard/institute");
+    const isMentorRoute = pathname.startsWith("/dashboard/mentor");
+    const isAdminRoute = pathname.startsWith("/dashboard/admin");
+
+    if (isStudentRoute && session.role !== "student" && session.role !== "admin") {
       return redirectWithCookies(new URL(`/dashboard/${session.role}`, request.url));
     }
 
-    if (pathname.startsWith("/dashboard/student") && session.role !== "student" && session.role !== "admin") {
+    if (isInstituteRoute && session.role !== "institute" && session.role !== "admin") {
       return redirectWithCookies(new URL(`/dashboard/${session.role}`, request.url));
     }
-    
-    if (pathname.startsWith("/dashboard/institute") && session.role !== "institute" && session.role !== "admin") {
+
+    if (isMentorRoute && session.role !== "mentor" && session.role !== "admin") {
       return redirectWithCookies(new URL(`/dashboard/${session.role}`, request.url));
     }
-    
-    if (pathname.startsWith("/dashboard/mentor") && session.role !== "mentor" && session.role !== "admin") {
+
+    if (isAdminRoute && session.role !== "admin") {
       return redirectWithCookies(new URL(`/dashboard/${session.role}`, request.url));
     }
-    
-    if (pathname.startsWith("/dashboard/admin") && session.role !== "admin") {
+
+    // Catch-all for generic /dashboard or any unknown dashboard sub-routes
+    if (!isStudentRoute && !isInstituteRoute && !isMentorRoute && !isAdminRoute) {
       return redirectWithCookies(new URL(`/dashboard/${session.role}`, request.url));
     }
   }
