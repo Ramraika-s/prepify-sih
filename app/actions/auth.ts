@@ -8,7 +8,7 @@ import { ActionResponse } from "@/lib/types/action";
 // Simple in-memory rate limiter (per Edge isolate / Node process)
 // For a multi-node production setup, replace with @upstash/ratelimit
 const rateLimitCache = new Map<string, { count: number; expiresAt: number }>();
-const MAX_ATTEMPTS = 5;
+const MAX_ATTEMPTS = 50;
 const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
 
 function checkRateLimit(ip: string): boolean {
