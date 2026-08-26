@@ -425,8 +425,18 @@ export default function SignUpView() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <button
                   type="button"
-                  onClick={() => {
-                    setErrorMessage("Google SSO sign up is initializing.");
+                  onClick={async () => {
+                    const { createClient } = await import("@/lib/supabase/client");
+                    const supabase = createClient();
+                    const { error } = await supabase.auth.signInWithOAuth({
+                      provider: "google",
+                      options: {
+                        redirectTo: `${window.location.origin}/api/auth/callback?role=${role}`,
+                      }
+                    });
+                    if (error) {
+                      setErrorMessage("Unable to initialize Google SSO. Please try again.");
+                    }
                   }}
                   className="py-3 px-4 bg-black/60 hover:bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white rounded-xl text-xs font-medium transition-all flex items-center justify-center gap-2.5"
                 >

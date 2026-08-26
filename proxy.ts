@@ -6,7 +6,7 @@ export async function proxy(request: NextRequest) {
   const { supabaseResponse, user } = await updateSession(request);
   const { pathname } = request.nextUrl;
 
-  const session = user ? { role: user.app_metadata?.role || user.user_metadata?.role } : null;
+  const session = user ? { role: user.app_metadata?.role || user.user_metadata?.role || "student" } : null;
 
   // Guest-only auth pages
   const isAuthPage = pathname.startsWith("/sign-in") || pathname.startsWith("/sign-up");

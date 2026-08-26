@@ -133,10 +133,16 @@ export async function deleteAccountAction(): Promise<ActionResponse> {
       return { success: false, error: "UNAUTHORIZED" };
     }
 
-    const { error } = await supabase.rpc("delete_my_account");
-    if (error) {
-      return { success: false, error: error.message };
+    // Since we have ON DELETE CASCADE set up in postgres, 
+    // deleting the user from auth.users via Admin API will cleanly wipe all related data.
+    const { supabaseAdmin } = await import("@/lib/supabase/server-admin");
+    const { error: deleteError } = await supabaseAdmin.auth.admin.deleteUser(user.id);
+    
+    if (deleteError) {
+      console.error("Account deletion failed:", deleteError);
+      return { success: false, error: deleteError.message };
     }
+
     await supabase.auth.signOut();
   } catch (error: any) {
     return { success: false, error: error?.message || "An unexpected error occurred" };

@@ -13,6 +13,7 @@ import {
   FileQuestion,
   Star,
   ShieldAlert,
+  User,
 } from "lucide-react";
 
 import {
@@ -103,15 +104,20 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="border-t border-white/10 p-4">
-        <div className="flex items-center gap-3">
-          <div className="size-8 rounded-full bg-zinc-800 border border-zinc-700" />
+        <Link 
+          href={`/dashboard/${isInstitute ? "institute" : isMentor ? "mentor" : isAdmin ? "admin" : "student"}/profile`}
+          className="flex items-center gap-3 hover:bg-white/5 p-2 -mx-2 rounded-xl transition-colors"
+        >
+          <div className="size-8 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex items-center justify-center text-zinc-500">
+            <User className="w-4 h-4" />
+          </div>
           <div className="flex flex-col text-sm">
             <span className="font-medium font-sans text-zinc-200">User Profile</span>
             <span className="text-xs font-mono text-zinc-500">
               {isInstitute ? "Institute" : isMentor ? "Mentor" : isAdmin ? "Admin" : "Student"}
             </span>
           </div>
-        </div>
+        </Link>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
