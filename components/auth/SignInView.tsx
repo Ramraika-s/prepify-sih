@@ -51,14 +51,17 @@ export default function SignInView() {
         return;
       }
 
+      // Store token on frontend domain for Next.js middleware
+      if (data.token) {
+        document.cookie = `prepify_token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax`;
+      }
+
       setIsLoading(false);
       setIsSuccess(true);
 
       const redirectPath = `/dashboard/${role}`;
 
-      setTimeout(() => {
-        router.push(redirectPath);
-      }, 900);
+      router.push(redirectPath);
     } catch (err) {
       console.error("Sign in error:", err);
       setErrorMessage("Unable to connect to authentication server. Please try again.");

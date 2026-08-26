@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface BackgroundVideoProps {
   opacity?: number;
@@ -11,6 +12,16 @@ export default function BackgroundVideo({
   opacity = 0.35,
   overlayGradient = true,
 }: BackgroundVideoProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-[#08080A]" />;
+  }
+
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-[#08080A]">
       {/* Background HTML5 Video with Grayscale Filter */}
