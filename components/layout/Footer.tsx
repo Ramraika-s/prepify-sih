@@ -64,10 +64,10 @@ export default function Footer() {
     {
       title: "Legal & Trust",
       links: [
-        { name: "Privacy Policy", href: "/privacy" },
-        { name: "Terms of Service", href: "/terms" },
-        { name: "Security Audit", href: "/security" },
-        { name: "Compliance", href: "/compliance" },
+        { name: "Privacy Policy", href: "/legal/privacy" },
+        { name: "Terms of Service", href: "/legal/terms" },
+        { name: "Security Audit", href: "/legal/security" },
+        { name: "Compliance", href: "/legal/compliance" },
       ],
     },
   ];

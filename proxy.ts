@@ -43,6 +43,10 @@ export async function proxy(request: NextRequest) {
     if (pathname.startsWith("/dashboard/mentor") && session.role !== "mentor" && session.role !== "admin") {
       return NextResponse.redirect(new URL(`/dashboard/${session.role}`, request.url));
     }
+    
+    if (pathname.startsWith("/dashboard/admin") && session.role !== "admin") {
+      return NextResponse.redirect(new URL(`/dashboard/${session.role}`, request.url));
+    }
   }
 
   return supabaseResponse;

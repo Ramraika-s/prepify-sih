@@ -8,15 +8,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect("/auth");
+    redirect("/sign-in");
   }
 
-  const { data: isAdmin, error } = await supabase.rpc("has_role", {
-    _user_id: user.id,
-    _role: "admin",
-  });
+  // Use Custom JWT Claims for RBAC to match proxy.ts
+  const role = user.app_metadata?.role || user.user_metadata?.role;
+  const isAdmin = role === "admin";
 
-  if (error || !isAdmin) {
+  if (!isAdmin) {
     redirect("/dashboard");
   }
 

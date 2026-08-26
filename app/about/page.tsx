@@ -35,10 +35,10 @@ export default function AboutPage() {
         </section>
 
         <section className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 backdrop-blur-2xl">
-          <h2 className="text-2xl font-bold mb-6">The Antigravity Approach</h2>
+          <h2 className="text-2xl font-bold mb-6">Our Approach</h2>
           <div className="space-y-6 text-zinc-300 font-light leading-relaxed">
             <p>
-              We believe your digital environment profoundly affects your focus. That&apos;s why the Prepify platform is built using our proprietary <strong>Antigravity Design System</strong>. Deep zinc tones, tactile grain, and frictionless motion ensure cognitive ease and zero distraction during high-stakes practice sessions.
+              We believe your digital environment profoundly affects your focus. That&apos;s why the Prepify platform is built with a frictionless, minimalist design system. Deep zinc tones, tactile grain, and smooth motion ensure cognitive ease and zero distraction during high-stakes practice sessions.
             </p>
           </div>
         </section>
