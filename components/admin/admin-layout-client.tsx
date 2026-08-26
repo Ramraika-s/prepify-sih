@@ -18,17 +18,17 @@ import {
 } from "lucide-react";
 
 const tabs = [
-  { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
-  { to: "/admin/users", label: "Users", icon: Users, exact: false },
-  { to: "/admin/content", label: "Content", icon: BookOpen, exact: false },
-  { to: "/admin/counseling", label: "Counseling", icon: GraduationCap, exact: false },
-  { to: "/admin/billing", label: "Billing", icon: CreditCard, exact: false },
-  { to: "/admin/activity", label: "Activity", icon: ScrollText, exact: false },
-  { to: "/admin/legal", label: "Legal Pages", icon: FileText, exact: false },
-  { to: "/admin/contact", label: "Contact", icon: MessageCircle, exact: false },
-  { to: "/admin/mentors", label: "Mentors", icon: UserCheck, exact: false },
-  { to: "/admin/team", label: "Team", icon: Heart, exact: false },
-  { to: "/admin/leads", label: "Institute Leads", icon: Building2, exact: false },
+  { to: "/dashboard/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
+  { to: "/dashboard/admin/users", label: "Users", icon: Users, exact: false },
+  { to: "/dashboard/admin/content", label: "Content", icon: BookOpen, exact: false },
+  { to: "/dashboard/admin/counseling", label: "Counseling", icon: GraduationCap, exact: false },
+  { to: "/dashboard/admin/billing", label: "Billing", icon: CreditCard, exact: false },
+  { to: "/dashboard/admin/activity", label: "Activity", icon: ScrollText, exact: false },
+  { to: "/dashboard/admin/legal", label: "Legal Pages", icon: FileText, exact: false },
+  { to: "/dashboard/admin/contact", label: "Contact", icon: MessageCircle, exact: false },
+  { to: "/dashboard/admin/mentors", label: "Mentors", icon: UserCheck, exact: false },
+  { to: "/dashboard/admin/team", label: "Team", icon: Heart, exact: false },
+  { to: "/dashboard/admin/leads", label: "Institute Leads", icon: Building2, exact: false },
 ] as const;
 
 export function AdminLayoutClient({ children }: { children: React.ReactNode }) {

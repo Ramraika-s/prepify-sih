@@ -85,11 +85,18 @@ export async function signUp(payload: unknown): Promise<ActionResponse> {
 
     const supabase = await createClient();
     const { email, password, role: parsedRole, ...metadata } = parsed.data;
+
+    // Determine the origin for the emailRedirectTo parameter
+    const headersList = await import("next/headers").then(m => m.headers());
+    const host = headersList.get("host") || "localhost:3000";
+    const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+    const origin = `${protocol}://${host}`;
     
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
+        emailRedirectTo: `${origin}/api/auth/callback?role=${parsedRole}`,
         data: {
           role: parsedRole,
           ...metadata,

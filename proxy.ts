@@ -8,13 +8,21 @@ export async function proxy(request: NextRequest) {
 
   const session = user ? { role: user.app_metadata?.role || user.user_metadata?.role || "student" } : null;
 
+  const redirectWithCookies = (url: URL) => {
+    const res = NextResponse.redirect(url);
+    // Forward the refreshed cookies to the redirect
+    supabaseResponse.cookies.getAll().forEach((cookie) => {
+      res.cookies.set(cookie.name, cookie.value, cookie);
+    });
+    return res;
+  };
+
   // Guest-only auth pages
   const isAuthPage = pathname.startsWith("/sign-in") || pathname.startsWith("/sign-up");
 
   if (isAuthPage) {
     if (session) {
-      // Redirect signed-in user away from auth pages to their role portal
-      return NextResponse.redirect(new URL(`/dashboard/${session.role}`, request.url));
+      return redirectWithCookies(new URL(`/dashboard/${session.role}`, request.url));
     }
     return supabaseResponse;
   }
@@ -22,30 +30,27 @@ export async function proxy(request: NextRequest) {
   // Protected Dashboard Routes
   if (pathname.startsWith("/dashboard")) {
     if (!session) {
-      // Not logged in -> Redirect to sign-in
-      return NextResponse.redirect(new URL("/sign-in", request.url));
+      return redirectWithCookies(new URL("/sign-in", request.url));
     }
 
-    // Root dashboard hit -> Redirect to specific role dashboard
     if (pathname === "/dashboard") {
-      return NextResponse.redirect(new URL(`/dashboard/${session.role}`, request.url));
+      return redirectWithCookies(new URL(`/dashboard/${session.role}`, request.url));
     }
 
-    // Role-Based Access Control (RBAC)
     if (pathname.startsWith("/dashboard/student") && session.role !== "student" && session.role !== "admin") {
-      return NextResponse.redirect(new URL(`/dashboard/${session.role}`, request.url));
+      return redirectWithCookies(new URL(`/dashboard/${session.role}`, request.url));
     }
     
     if (pathname.startsWith("/dashboard/institute") && session.role !== "institute" && session.role !== "admin") {
-      return NextResponse.redirect(new URL(`/dashboard/${session.role}`, request.url));
+      return redirectWithCookies(new URL(`/dashboard/${session.role}`, request.url));
     }
     
     if (pathname.startsWith("/dashboard/mentor") && session.role !== "mentor" && session.role !== "admin") {
-      return NextResponse.redirect(new URL(`/dashboard/${session.role}`, request.url));
+      return redirectWithCookies(new URL(`/dashboard/${session.role}`, request.url));
     }
     
     if (pathname.startsWith("/dashboard/admin") && session.role !== "admin") {
-      return NextResponse.redirect(new URL(`/dashboard/${session.role}`, request.url));
+      return redirectWithCookies(new URL(`/dashboard/${session.role}`, request.url));
     }
   }
 
@@ -54,13 +59,6 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * Feel free to modify this pattern to include more paths.
-     */
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 };
