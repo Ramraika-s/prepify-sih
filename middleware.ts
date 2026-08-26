@@ -32,15 +32,15 @@ export async function middleware(request: NextRequest) {
     }
 
     // Role-Based Access Control (RBAC)
-    if (pathname.startsWith("/dashboard/student") && session.role !== "student") {
+    if (pathname.startsWith("/dashboard/student") && session.role !== "student" && session.role !== "admin") {
       return NextResponse.redirect(new URL(`/dashboard/${session.role}`, request.url));
     }
     
-    if (pathname.startsWith("/dashboard/institute") && session.role !== "institute") {
+    if (pathname.startsWith("/dashboard/institute") && session.role !== "institute" && session.role !== "admin") {
       return NextResponse.redirect(new URL(`/dashboard/${session.role}`, request.url));
     }
     
-    if (pathname.startsWith("/dashboard/mentor") && session.role !== "mentor") {
+    if (pathname.startsWith("/dashboard/mentor") && session.role !== "mentor" && session.role !== "admin") {
       return NextResponse.redirect(new URL(`/dashboard/${session.role}`, request.url));
     }
   }

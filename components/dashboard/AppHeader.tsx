@@ -11,9 +11,9 @@ export function AppHeader() {
   const segments = pathname.split('/').filter(Boolean);
 
   return (
-    <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center justify-between border-b border-white/10 bg-[#0a0a0a]/80 backdrop-blur-xl px-4">
+    <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center justify-between border-b border-white/10 bg-black/40 backdrop-blur-2xl px-4 shadow-antigravity">
       <div className="flex items-center gap-4">
-        <SidebarTrigger className="text-zinc-400 hover:text-white" />
+        <SidebarTrigger className="text-zinc-400 hover:text-white transition-transform hover:scale-110" />
         
         <Breadcrumb className="hidden sm:flex">
           <BreadcrumbList>
@@ -26,9 +26,9 @@ export function AppHeader() {
                 <div key={href} className="flex items-center gap-1.5">
                   <BreadcrumbItem>
                     {isLast ? (
-                      <BreadcrumbPage className="text-zinc-200">{title}</BreadcrumbPage>
+                      <BreadcrumbPage className="text-white font-sans font-medium">{title}</BreadcrumbPage>
                     ) : (
-                      <BreadcrumbLink href={href} className="text-zinc-500 hover:text-zinc-300">
+                      <BreadcrumbLink href={href} className="text-zinc-500 hover:text-white transition-colors">
                         {title}
                       </BreadcrumbLink>
                     )}
@@ -42,7 +42,7 @@ export function AppHeader() {
       </div>
 
       <div className="flex items-center gap-2">
-        <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-white hover:bg-white/10">
+        <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-white hover:bg-white/10 transition-transform duration-300 hover:scale-110">
           <Bell className="h-5 w-5" />
         </Button>
       </div>
