@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "backend:dev": "npm run start --prefix backend",
+    "backend:pm2:start": "pm2 start backend/ecosystem.config.js",
+    "backend:pm2:stop": "pm2 stop prepify-backend",
+    "backend:pm2:restart": "pm2 restart prepify-backend",
+    "backend:pm2:logs": "pm2 logs prepify-backend"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
