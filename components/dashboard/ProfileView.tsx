@@ -372,7 +372,7 @@ export function ProfileView({ user }: ProfileViewProps) {
               Permanently delete your Prepify account, all associated data, test attempts, and subscriptions. This action cannot be undone.
             </p>
           </div>
-          <form action={deleteAccountAction}>
+          <form action={async () => { await deleteAccountAction(); }}>
             <button
               type="submit"
               className="bg-red-500/20 text-red-400 hover:bg-red-500/30 border border-red-500/30 px-6 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center gap-2 shrink-0 whitespace-nowrap"
