@@ -17,7 +17,7 @@ export default function CBTHero() {
           </h1>
 
           <p className="text-base sm:text-lg font-normal text-zinc-400 leading-relaxed mb-8">
-            Eliminate exam room surprise. Prepify replicates the exact test software used by NTA and IITs for JEE Main, NEET UG, and GATE CS—complete with hardware keyboard shortcuts, color-coded question palettes, and negative marking rules.
+            Eliminate exam room surprise. Quero replicates the exact test software used by NTA and IITs for JEE Main, NEET UG, and GATE CS-complete with hardware keyboard shortcuts, color-coded question palettes, and negative marking rules.
           </p>
 
           <div className="flex flex-wrap items-center gap-4">

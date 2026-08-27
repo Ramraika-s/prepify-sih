@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { ProfileView } from "@/components/dashboard/ProfileView";
 
 export const metadata = {
-  title: "Profile | Prepify",
+  title: "Profile | Quero",
 };
 
 export default async function MentorProfilePage() {

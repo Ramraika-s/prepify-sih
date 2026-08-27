@@ -3,7 +3,7 @@
  * Supabase auth callbacks, share links, emails.
  *
  * Preview deployments keep their own origin so auth still works there, but any
- * production *.vercel.app hit is redirected to Prepify.in at the edge
+ * production *.vercel.app hit is redirected to Quero.in at the edge
  * (see vercel.json), so links must never be minted against that host.
  */
 export const CANONICAL_ORIGIN = process.env.NEXT_PUBLIC_SITE_URL as any;

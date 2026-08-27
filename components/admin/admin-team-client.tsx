@@ -161,7 +161,7 @@ export function AdminTeamClient() {
 
               <div>
                 <Label>Founder message (only shown if "Founder" is on)</Label>
-                <Textarea rows={5} value={editing.founder_message ?? ""} onChange={(e) => setEditing({ ...editing, founder_message: e.target.value })} placeholder="Why I built Prepify…" />
+                <Textarea rows={5} value={editing.founder_message ?? ""} onChange={(e) => setEditing({ ...editing, founder_message: e.target.value })} placeholder="Why I built Quero…" />
               </div>
 
               <div className="grid grid-cols-3 gap-2 items-end">
@@ -195,7 +195,7 @@ export function AdminTeamClient() {
               <div className="h-10 w-10 rounded-xl bg-muted overflow-hidden flex items-center justify-center shrink-0 border border-border">
                 {m.photo_url
                   ? <img src={m.photo_url} alt="" className="h-full w-full object-cover" />
-                  : <span className="text-[10px] text-muted-foreground">—</span>}
+                  : <span className="text-[10px] text-muted-foreground">-</span>}
               </div>
               <div className="min-w-0">
                 <div className="font-semibold text-sm truncate flex items-center gap-1.5">

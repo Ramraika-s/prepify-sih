@@ -63,7 +63,7 @@ export default function FeaturesHero() {
             </h1>
 
             <p className="text-base sm:text-lg font-normal text-zinc-400 leading-relaxed mb-8 max-w-2xl">
-              Standard mock test portals only record right or wrong answers. Prepify replicates actual test center software and measures how you spend your time under exam hall pressure.
+              Standard mock test portals only record right or wrong answers. Quero replicates actual test center software and measures how you spend your time under exam hall pressure.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">

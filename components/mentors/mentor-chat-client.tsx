@@ -85,7 +85,7 @@ export function MentorChatClient({ mentorId }: { mentorId: string }) {
       <main className="flex-1 mx-auto w-full max-w-lg px-5 py-4 space-y-2">
         {messages.length === 0 && (
           <div className="text-center text-sm text-muted-foreground py-10">
-            Say hello — ask anything about college life, counselling or preparation.
+            Say hello - ask anything about college life, counselling or preparation.
           </div>
         )}
         {messages.map((m: any) => {

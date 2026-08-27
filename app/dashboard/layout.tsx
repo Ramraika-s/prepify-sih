@@ -5,8 +5,8 @@ import { AppHeader } from "@/components/dashboard/AppHeader";
 import { BackgroundTexture } from "@/components/ui/background-texture";
 
 export const metadata: Metadata = {
-  title: "Dashboard | Prepify",
-  description: "Your personalized Prepify dashboard and analytics portal.",
+  title: "Dashboard | Quero",
+  description: "Your personalized Quero dashboard and analytics portal.",
 };
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -14,7 +14,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <SidebarProvider>
       <BackgroundTexture />
       <AppSidebar />
-      <div className="flex min-h-screen w-full flex-col bg-transparent text-white [perspective:1000px]">
+      <div className="flex min-h-screen w-full flex-col bg-transparent text-foreground [perspective:1000px]">
         <AppHeader />
         <main className="flex-1 overflow-auto p-4 md:p-6 lg:p-8">
           {children}

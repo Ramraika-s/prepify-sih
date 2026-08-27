@@ -24,7 +24,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-1.5 group">
             <span className="text-xl font-bold tracking-tight text-white group-hover:text-white/90 transition-colors">
-              Prepify
+              Quero
             </span>
           </Link>
 
@@ -109,7 +109,7 @@ export default function Header() {
             <div className="flex items-center justify-between">
               <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-1.5">
                 <span className="text-2xl font-bold tracking-tight text-white">
-                  Prepify
+                  Quero
                 </span>
               </Link>
               <button

@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Careers | Prepify",
-  description: "Join Prepify and help build the future of AI-driven exam preparation and mentorship.",
+  title: "Careers | Quero",
+  description: "Join Quero and help build the future of AI-driven exam preparation and mentorship.",
 };
 
 export default function CareersPage() {
@@ -28,7 +28,7 @@ export default function CareersPage() {
           </div>
           <h2 className="text-2xl font-bold mb-4">No open roles currently</h2>
           <p className="text-zinc-400 font-light max-w-lg mx-auto leading-relaxed">
-            We are currently full on our core engineering and product teams. However, we are always on the lookout for exceptional talent. If you believe you belong here, send your portfolio to <strong>careers@prepify.ai</strong>.
+            We are currently full on our core engineering and product teams. However, we are always on the lookout for exceptional talent. If you believe you belong here, send your portfolio to <strong>careers@quero.ai</strong>.
           </p>
         </section>
       </div>

@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 const LEGAL_PAGES = {
   privacy: {
     title: "Privacy Policy",
-    description: "How Prepify collects, uses, and protects your data.",
+    description: "How Quero collects, uses, and protects your data.",
     sections: [
       {
         heading: "1. Information We Collect",
@@ -32,12 +32,12 @@ const LEGAL_PAGES = {
   },
   terms: {
     title: "Terms of Service",
-    description: "The rules and guidelines for using the Prepify platform.",
+    description: "The rules and guidelines for using the Quero platform.",
     sections: [
       {
         heading: "1. Acceptance of Terms",
         paragraphs: [
-          "By accessing and using the Prepify platform, you accept and agree to be bound by the terms and provision of this agreement. In addition, when using these particular services, you shall be subject to any posted guidelines or rules applicable to such services.",
+          "By accessing and using the Quero platform, you accept and agree to be bound by the terms and provision of this agreement. In addition, when using these particular services, you shall be subject to any posted guidelines or rules applicable to such services.",
           "Any participation in this service will constitute acceptance of this agreement. If you do not agree to abide by the above, please do not use this service."
         ]
       },
@@ -51,19 +51,19 @@ const LEGAL_PAGES = {
       {
         heading: "3. Intellectual Property Rights",
         paragraphs: [
-          "The site and its original content, features, and functionality are owned by Prepify and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws."
+          "The site and its original content, features, and functionality are owned by Quero and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws."
         ]
       }
     ]
   },
   security: {
     title: "Security Audit",
-    description: "Details regarding Prepify's enterprise-grade security posture.",
+    description: "Details regarding Quero's enterprise-grade security posture.",
     sections: [
       {
         heading: "1. Infrastructure Security",
         paragraphs: [
-          "Prepify leverages enterprise-grade cloud providers with SOC 2 Type II compliance. All data is encrypted at rest using AES-256 encryption and in transit using TLS 1.3.",
+          "Quero leverages enterprise-grade cloud providers with SOC 2 Type II compliance. All data is encrypted at rest using AES-256 encryption and in transit using TLS 1.3.",
           "We employ multi-layered network security, including web application firewalls (WAF), DDoS protection, and strict VPC peering rules to isolate our databases from public internet access."
         ]
       },
@@ -89,14 +89,14 @@ const LEGAL_PAGES = {
       {
         heading: "1. Data Protection & GDPR",
         paragraphs: [
-          "Prepify is committed to compliance with the General Data Protection Regulation (GDPR) and similar global privacy frameworks. We provide our users with the ability to export their data, request deletion, and explicitly manage their consent preferences.",
+          "Quero is committed to compliance with the General Data Protection Regulation (GDPR) and similar global privacy frameworks. We provide our users with the ability to export their data, request deletion, and explicitly manage their consent preferences.",
           "We have appointed a Data Protection Officer (DPO) to oversee our privacy strategies and ensure all processing activities respect user rights."
         ]
       },
       {
         heading: "2. Educational Regulations (FERPA & COPPA)",
         paragraphs: [
-          "For our users in the United States, Prepify complies fully with the Family Educational Rights and Privacy Act (FERPA). We implement strict administrative, physical, and technical safeguards to protect student education records.",
+          "For our users in the United States, Quero complies fully with the Family Educational Rights and Privacy Act (FERPA). We implement strict administrative, physical, and technical safeguards to protect student education records.",
           "We also adhere to the Children's Online Privacy Protection Act (COPPA), ensuring that we do not knowingly collect personal information from children under 13 without verifiable parental consent."
         ]
       }
@@ -120,12 +120,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   
   if (!page) {
     return {
-      title: "Page Not Found | Prepify",
+      title: "Page Not Found | Quero",
     };
   }
 
   return {
-    title: `${page.title} | Prepify`,
+    title: `${page.title} | Quero`,
     description: page.description,
   };
 }

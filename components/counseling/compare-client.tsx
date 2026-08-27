@@ -90,9 +90,9 @@ export function CompareClient() {
             <tbody>
               {([
                 ["Type", (c: any) => <Badge variant="secondary">{c.institution_type}</Badge>],
-                ["Location", (c: any) => `${c.city ?? "—"}, ${c.state}`],
-                ["Annual fees (₹)", (c: any) => c.annual_fees_min || c.annual_fees_max ? `${c.annual_fees_min ?? "?"} – ${c.annual_fees_max ?? "?"}` : "—"],
-                ["Total seats", (c: any) => c.total_seats ?? "—"],
+                ["Location", (c: any) => `${c.city ?? "-"}, ${c.state}`],
+                ["Annual fees (₹)", (c: any) => c.annual_fees_min || c.annual_fees_max ? `${c.annual_fees_min ?? "?"} – ${c.annual_fees_max ?? "?"}` : "-"],
+                ["Total seats", (c: any) => c.total_seats ?? "-"],
                 ["Hostel", (c: any) => c.hostel_available ? "Yes" : "No"],
                 ["Bond", (c: any) => c.bond_years ? `${c.bond_years} yr${c.bond_amount ? ` / ₹${c.bond_amount}` : ""}` : "None"],
                 ["NMC recognized", (c: any) => c.nmc_recognized ? "Yes" : "No"],

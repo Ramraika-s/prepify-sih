@@ -1,6 +1,6 @@
 // Deterministic seeded shuffle so a given attempt always renders the
 // same order, but a different attempt renders a different order.
-// Display-only — never used to determine correctness.
+// Display-only - never used to determine correctness.
 
 function hashSeed(seed: string): number {
   // FNV-1a 32-bit

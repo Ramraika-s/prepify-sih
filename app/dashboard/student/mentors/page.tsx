@@ -2,7 +2,7 @@ import { MentorsClient } from "@/components/mentors/mentors-client";
 import { Suspense } from "react";
 
 export const metadata = {
-  title: "Mentors — Prepify",
+  title: "Mentors - Quero",
 };
 
 export default function MentorsPage() {

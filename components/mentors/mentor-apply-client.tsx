@@ -81,7 +81,7 @@ export function MentorApplyClient() {
       : await supabase.from("mentors").insert({ ...payload, user_id: user!.id });
     setSaving(false);
     if (res.error) { toast.error(res.error.message); return; }
-    toast.success(mentor ? "Profile updated" : "Application started — upload your documents next");
+    toast.success(mentor ? "Profile updated" : "Application started - upload your documents next");
     qc.invalidateQueries({ queryKey: ["my-mentor-profile"] });
   };
 
@@ -170,7 +170,7 @@ export function MentorApplyClient() {
             <Label>College</Label>
             <select className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm" value={form.college_id} onChange={(e) => setForm({ ...form, college_id: e.target.value })}>
               <option value="">Select your college</option>
-              {colleges.map((c: any) => <option key={c.id} value={c.id}>{c.name} — {c.state}</option>)}
+              {colleges.map((c: any) => <option key={c.id} value={c.id}>{c.name} - {c.state}</option>)}
             </select>
           </div>
 
@@ -212,7 +212,7 @@ export function MentorApplyClient() {
 
         <section className="rounded-2xl border border-border bg-card p-4 shadow-card space-y-3">
           <h2 className="font-semibold text-sm">Verification documents</h2>
-          <p className="text-xs text-muted-foreground">Private — visible only to you and the Prepify verification team.</p>
+          <p className="text-xs text-muted-foreground">Private - visible only to you and the Quero verification team.</p>
           {!mentor && <p className="text-xs text-muted-foreground">Save your profile above to unlock uploads.</p>}
           {([
             ["student_id_url", "Government ID (Aadhaar / passport)"],

@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/supabase/client";
 
 /**
- * Fire-and-forget admin activity logger. Errors are swallowed —
+ * Fire-and-forget admin activity logger. Errors are swallowed -
  * failing to log should never block the underlying admin action.
  */
 export async function logAdminAction(

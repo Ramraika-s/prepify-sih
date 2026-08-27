@@ -112,7 +112,7 @@ export function UpgradeClient() {
       if (ticks > 40) {
         window.clearInterval(pollRef.current!); pollRef.current = null;
         setConfirmingOrderId(null);
-        toast.message("Still processing — we'll update your account as soon as the payment confirms.");
+        toast.message("Still processing - we'll update your account as soon as the payment confirms.");
       }
     }, 2000);
   };
@@ -131,7 +131,7 @@ export function UpgradeClient() {
         key: order.keyId,
         amount: order.amountPaise,
         currency: "INR",
-        name: "Prepify",
+        name: "Quero",
         description: order.planName,
         order_id: order.orderId,
         prefill: { email: user.email ?? undefined, name: user.user_metadata?.display_name ?? undefined },
@@ -166,7 +166,7 @@ export function UpgradeClient() {
       <header className="sticky top-0 bg-black/40 backdrop-blur-2xl border-b border-white/10 z-30 shadow-antigravity">
         <div className="mx-auto max-w-lg px-5 py-4">
           <h1 className="font-heading font-bold text-2xl tracking-tight">Upgrade</h1>
-          <p className="text-sm font-sans text-zinc-400">Unlock everything Prepify has to offer</p>
+          <p className="text-sm font-sans text-zinc-400">Unlock everything Quero has to offer</p>
         </div>
       </header>
 
@@ -190,7 +190,7 @@ export function UpgradeClient() {
             <div className="flex items-center justify-between rounded-xl bg-primary/20 border border-primary/30 px-4 py-3 text-sm">
               <div className="font-sans text-zinc-200">
                 <span className="font-bold text-white font-mono tracking-wider">{couponInfo.code}</span>
-                <span className="text-zinc-400"> — you save ₹{couponInfo.discountInr.toLocaleString("en-IN")}</span>
+                <span className="text-zinc-400"> - you save ₹{couponInfo.discountInr.toLocaleString("en-IN")}</span>
               </div>
               <button onClick={() => { setCouponInfo(null); setCouponCode(""); }} className="text-zinc-400 hover:text-white transition-colors"><X size={16} /></button>
             </div>

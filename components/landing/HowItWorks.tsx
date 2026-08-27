@@ -17,7 +17,7 @@ const STEPS = [
   {
     n: "03",
     title: "Build the sections",
-    body: "Assemble approved questions into timed, sectioned tests that mirror the real exam's structure — down to the marking scheme.",
+    body: "Assemble approved questions into timed, sectioned tests that mirror the real exam's structure - down to the marking scheme.",
   },
   {
     n: "04",

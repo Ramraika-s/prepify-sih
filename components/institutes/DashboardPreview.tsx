@@ -56,7 +56,7 @@ export default function DashboardPreview() {
           {/* Top Bar */}
           <div className="bg-zinc-900/90 border-b border-zinc-800 px-6 py-4 flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
             <div className="flex items-center gap-3">
-              <span className="font-bold text-white">RESONANCE KOTA — MAIN CAMPUS</span>
+              <span className="font-bold text-white">RESONANCE KOTA - MAIN CAMPUS</span>
               <span className="text-zinc-600">|</span>
               <span className="text-zinc-400">JEE MAIN FULL MOCK PAPER #8</span>
             </div>
@@ -133,7 +133,7 @@ export default function DashboardPreview() {
                 <div className="space-y-3">
                   <div className="p-3.5 bg-black/60 border border-zinc-800 rounded-lg flex items-center justify-between">
                     <div>
-                      <div className="text-white font-bold">Q18 — Chemistry (Conformal Isomers)</div>
+                      <div className="text-white font-bold">Q18 - Chemistry (Conformal Isomers)</div>
                       <div className="text-zinc-400 text-[11px]">74% Candidates chose Distractor B instead of C</div>
                     </div>
                     <span className="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 text-[10px] font-bold">
@@ -142,7 +142,7 @@ export default function DashboardPreview() {
                   </div>
                   <div className="p-3.5 bg-black/60 border border-zinc-800 rounded-lg flex items-center justify-between">
                     <div>
-                      <div className="text-white font-bold">Q29 — Physics (Rotational Dynamics)</div>
+                      <div className="text-white font-bold">Q29 - Physics (Rotational Dynamics)</div>
                       <div className="text-zinc-400 text-[11px]">58% Candidates ran out of time (&gt; 4m spent)</div>
                     </div>
                     <span className="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-bold">

@@ -81,7 +81,7 @@ export default function Footer() {
             <div>
               <Link href="/" className="flex items-center gap-2 mb-4">
                 <span className="text-3xl font-bold tracking-tight text-white">
-                  Prepify
+                  Quero
                 </span>
               </Link>
               <p className="text-white/70 text-lg font-light leading-relaxed max-w-md">
@@ -166,7 +166,7 @@ export default function Footer() {
 
         {/* Bottom Bar: Copyright & Social Links */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 text-xs text-white/50">
-          <p>© {new Date().getFullYear()} Prepify Inc. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Quero Inc. All rights reserved.</p>
 
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-white transition-colors">

@@ -84,8 +84,8 @@ function StatCards() {
   const freeCount = (totalUsers.data ?? 0) - (premium.data ?? 0) - (pro.data ?? 0);
   const cards = [
     { label: "Total revenue", value: `₹${(revenue.data ?? 0).toLocaleString("en-IN")}` },
-    { label: "Premium users", value: premium.data ?? "—" },
-    { label: "Pro users", value: pro.data ?? "—" },
+    { label: "Premium users", value: premium.data ?? "-" },
+    { label: "Pro users", value: pro.data ?? "-" },
     { label: "Free users", value: Math.max(0, freeCount) },
   ];
   return (
@@ -654,7 +654,7 @@ function PaymentsTab() {
                   <div className="flex items-center gap-2">
                     <Badge variant={r.status === "success" ? "default" : r.status === "refunded" ? "secondary" : "outline"}>{r.status}</Badge>
                     {r.status === "success" && (
-                      <Button size="sm" variant="ghost" title="Mark as refunded in DB only — does not call Razorpay"
+                      <Button size="sm" variant="ghost" title="Mark as refunded in DB only - does not call Razorpay"
                         onClick={() => { if (confirm("This only updates the database. It will NOT refund the customer via Razorpay. Continue?")) refund(r.id); }}>
                         <RefreshCcw size={14} /> <span className="ml-1 text-xs">Mark refunded (DB only)</span>
                       </Button>

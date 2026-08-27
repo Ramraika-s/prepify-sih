@@ -62,7 +62,7 @@ export function AdminUserDetailClient({ id }: { id: string }) {
             <div className="text-lg font-bold">{profile?.display_name || "Unnamed"}</div>
             <div className="text-sm text-muted-foreground">{profile?.email}</div>
             <div className="text-xs text-muted-foreground mt-1">
-              Joined {profile?.created_at ? new Date(profile.created_at).toLocaleDateString() : "—"}
+              Joined {profile?.created_at ? new Date(profile.created_at).toLocaleDateString() : "-"}
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -97,7 +97,7 @@ export function AdminUserDetailClient({ id }: { id: string }) {
               {attempts.map((a: any) => (
                 <tr key={a.id} className="border-t border-border">
                   <td className="px-4 py-2">{a.test_type}</td>
-                  <td className="px-4 py-2">{a.subjects?.name ?? "—"}</td>
+                  <td className="px-4 py-2">{a.subjects?.name ?? "-"}</td>
                   <td className="px-4 py-2">{a.mode}</td>
                   <td className="px-4 py-2 text-right">{a.submitted_at ? `${a.correct_count}/${a.total_questions}` : "In progress"}</td>
                   <td className="px-4 py-2 text-right text-xs text-muted-foreground">{new Date(a.started_at).toLocaleString()}</td>

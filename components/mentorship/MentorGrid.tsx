@@ -19,7 +19,7 @@ const mentorList: Mentor[] = [
     id: 1,
     name: "Aravind Sharma",
     rank: "JEE Adv AIR 42",
-    college: "IIT Bombay — B.Tech Computer Science",
+    college: "IIT Bombay - B.Tech Computer Science",
     exam: "jee",
     scarcityBadge: "Only 2 slots left for Sunday",
     topics: ["Physics Mechanics", "Maths Calculus", "Negative Marking Control"],
@@ -28,7 +28,7 @@ const mentorList: Mentor[] = [
     id: 2,
     name: "Dr. Priya Verma",
     rank: "NEET 715 / 720 (AIR 19)",
-    college: "AIIMS New Delhi — MBBS",
+    college: "AIIMS New Delhi - MBBS",
     exam: "neet",
     scarcityBadge: "1 slot remaining this week",
     topics: ["NCERT Biology Edge", "Organic Synthesis", "Time Management"],
@@ -37,7 +37,7 @@ const mentorList: Mentor[] = [
     id: 3,
     name: "Rohan Kulkarni",
     rank: "GATE CS AIR 14",
-    college: "IISc Bangalore — M.Tech CS",
+    college: "IISc Bangalore - M.Tech CS",
     exam: "gate",
     scarcityBadge: "Waitlisted (Next availability: Nov 14)",
     isWaitlisted: true,
@@ -47,7 +47,7 @@ const mentorList: Mentor[] = [
     id: 4,
     name: "Siddharth Nambiar",
     rank: "JEE Adv AIR 184",
-    college: "IIT Delhi — Electrical Engineering",
+    college: "IIT Delhi - Electrical Engineering",
     exam: "jee",
     scarcityBadge: "3 slots available",
     topics: ["Physical Chemistry", "Paper Attempt Order", "Anxiety Control"],
@@ -206,9 +206,9 @@ export default function MentorGrid() {
                 <div>
                   <label className="block text-xs font-medium text-zinc-300 mb-2">Select Session Date</label>
                   <select className="w-full p-3 bg-black border border-zinc-800 rounded-xl text-xs text-white">
-                    <option>Saturday (Nov 15) — 4:00 PM IST</option>
-                    <option>Sunday (Nov 16) — 11:00 AM IST</option>
-                    <option>Sunday (Nov 16) — 7:00 PM IST</option>
+                    <option>Saturday (Nov 15) - 4:00 PM IST</option>
+                    <option>Sunday (Nov 16) - 11:00 AM IST</option>
+                    <option>Sunday (Nov 16) - 7:00 PM IST</option>
                   </select>
                 </div>
 

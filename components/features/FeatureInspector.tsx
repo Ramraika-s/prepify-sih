@@ -71,7 +71,7 @@ export default function FeatureInspector() {
             Architecture Deep Dive
           </h2>
           <p className="text-zinc-400 text-sm font-normal max-w-xl">
-            Select a category to review the specific technical implementations inside Prepify.
+            Select a category to review the specific technical implementations inside Quero.
           </p>
         </div>
 

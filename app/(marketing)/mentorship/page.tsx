@@ -4,7 +4,7 @@ import SessionRoadmap from "@/components/mentorship/SessionRoadmap";
 import BackgroundVideo from "@/components/ui/BackgroundVideo";
 
 export const metadata = {
-  title: "1-on-1 Mentorship — Top AIR Ranker Strategy Network",
+  title: "1-on-1 Mentorship - Top AIR Ranker Strategy Network",
   description: "Connect 1-on-1 with top JEE Advanced, NEET, and GATE AIR rankers for paper attempt strategy, time allocation, and anxiety control.",
 };
 

@@ -3,7 +3,7 @@ import { NewTestClient } from "@/components/tests/new-test-client";
 import { Loader2 } from "lucide-react";
 
 export const metadata = {
-  title: "Create Test — Prepify",
+  title: "Create Test - Quero",
 };
 
 export default function NewTestPage() {

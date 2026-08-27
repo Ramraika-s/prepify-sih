@@ -1,7 +1,7 @@
 import InstructionsView from "@/components/exam/InstructionsView";
 
 export const metadata = {
-  title: "Instructions — Prepify",
+  title: "Instructions - Quero",
 };
 
 export default async function InstructionsPage({

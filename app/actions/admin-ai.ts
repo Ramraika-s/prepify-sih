@@ -172,7 +172,7 @@ export async function validateMcq(raw: unknown) {
       "4. Options are plausible, mutually exclusive, and of similar style/length.",
       "Return ONLY a JSON object of shape:",
       '{ "verdict": "pass" | "revise" | "reject", "corrected_question"?: { question_text, options[4], correct_index, explanation, difficulty }, "reason"?: string }',
-      "Use 'revise' only if a small fix repairs it — include the full corrected_question object.",
+      "Use 'revise' only if a small fix repairs it - include the full corrected_question object.",
       "Use 'reject' when the question is unsalvageable. Provide a short reason for revise/reject.",
       "Return no prose, no markdown, JSON object only.",
     ].join("\n");

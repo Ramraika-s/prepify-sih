@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Us | Prepify",
-  description: "Learn about Prepify's mission to revolutionize exam preparation through AI-driven CBT and expert mentorship.",
+  title: "About Us | Quero",
+  description: "Learn about Quero's mission to revolutionize exam preparation through AI-driven CBT and expert mentorship.",
 };
 
 export default function AboutPage() {
@@ -18,7 +18,7 @@ export default function AboutPage() {
           <Link href="/" className="inline-flex items-center text-sm font-medium text-zinc-400 hover:text-white transition-colors">
             ← Back to Home
           </Link>
-          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">About Prepify</h1>
+          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">About Quero</h1>
           <p className="text-xl text-zinc-400 font-light">Democratizing elite exam preparation.</p>
         </header>
 
@@ -26,7 +26,7 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold mb-6">Our Mission</h2>
           <div className="space-y-6 text-zinc-300 font-light leading-relaxed">
             <p>
-              Prepify was founded with a singular vision: to bring top-tier, NTA-grade Computer Based Testing (CBT) and world-class mentorship to every student, regardless of their geographical location.
+              Quero was founded with a singular vision: to bring top-tier, NTA-grade Computer Based Testing (CBT) and world-class mentorship to every student, regardless of their geographical location.
             </p>
             <p>
               By bridging the gap between cutting-edge AI analytics and human expertise, we empower aspirants targeting JEE, NEET, GATE, and UPSC to uncover their true potential and optimize their preparation strategy dynamically.
@@ -38,7 +38,7 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold mb-6">Our Approach</h2>
           <div className="space-y-6 text-zinc-300 font-light leading-relaxed">
             <p>
-              We believe your digital environment profoundly affects your focus. That&apos;s why the Prepify platform is built with a frictionless, minimalist design system. Deep zinc tones, tactile grain, and smooth motion ensure cognitive ease and zero distraction during high-stakes practice sessions.
+              We believe your digital environment profoundly affects your focus. That&apos;s why the Quero platform is built with a frictionless, minimalist design system. Deep zinc tones, tactile grain, and smooth motion ensure cognitive ease and zero distraction during high-stakes practice sessions.
             </p>
           </div>
         </section>

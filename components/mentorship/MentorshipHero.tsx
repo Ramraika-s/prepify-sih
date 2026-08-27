@@ -16,7 +16,7 @@ export default function MentorshipHero() {
           </h1>
 
           <p className="text-base sm:text-lg font-normal text-zinc-400 leading-relaxed mb-8">
-            Coaching institutes teach you concepts. Prepify mentors teach you how to attempt the paper under 3-hour pressure—helping you build negative marking protocols, subject time allocations, and exam-room anxiety control.
+            Coaching institutes teach you concepts. Quero mentors teach you how to attempt the paper under 3-hour pressure-helping you build negative marking protocols, subject time allocations, and exam-room anxiety control.
           </p>
 
           <div className="flex flex-wrap items-center gap-4">

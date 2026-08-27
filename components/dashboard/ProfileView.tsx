@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { updateProfileDetails, updatePassword } from "@/app/actions/profile";
 import { deleteAccountAction } from "@/app/actions/auth";
 import { createClient } from "@/lib/supabase/client";
+import { InstituteEnrollmentCard } from "@/components/dashboard/InstituteEnrollmentCard";
+import { examPickerOptions } from "@/lib/exam-calendar";
 import { 
   User, Mail, Camera, Shield, AlertTriangle, Key, 
   Trash2, Save, Loader2, UploadCloud, GraduationCap, Users, BookOpen
@@ -21,6 +23,7 @@ type ProfileViewProps = {
 };
 
 export function ProfileView({ user }: ProfileViewProps) {
+  const examOptions = examPickerOptions();
   const [isPending, startTransition] = useTransition();
   const [uploading, setUploading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -242,12 +245,13 @@ export function ProfileView({ user }: ProfileViewProps) {
                   </label>
                   <select
                     name="target_exam"
-                    defaultValue={optimisticUser.target_exam || "JEE Main & Advanced 2026"}
+                    defaultValue={optimisticUser.target_exam || ""}
                     className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white/20 transition-all appearance-none"
                   >
-                    <option value="JEE Main & Advanced 2026">JEE Main & Advanced 2026</option>
-                    <option value="NEET-UG 2026">NEET-UG 2026</option>
-                    <option value="GATE Computer Science (CS)">GATE Computer Science (CS)</option>
+                    <option value="" disabled>Select your target exam…</option>
+                    {examOptions.map((o) => (
+                      <option key={o.value} value={o.value}>{o.label}</option>
+                    ))}
                   </select>
                 </div>
               )}
@@ -315,6 +319,8 @@ export function ProfileView({ user }: ProfileViewProps) {
         </div>
       </section>
 
+      {user.role === "student" && <InstituteEnrollmentCard />}
+
       {/* Security Section */}
       <section className="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 backdrop-blur-xl">
         <h2 className="text-xl font-semibold text-white flex items-center gap-2 mb-6">
@@ -369,7 +375,7 @@ export function ProfileView({ user }: ProfileViewProps) {
               Delete Account
             </h2>
             <p className="text-zinc-400 text-sm max-w-xl">
-              Permanently delete your Prepify account, all associated data, test attempts, and subscriptions. This action cannot be undone.
+              Permanently delete your Quero account, all associated data, test attempts, and subscriptions. This action cannot be undone.
             </p>
           </div>
           <form action={async () => { await deleteAccountAction(); }}>

@@ -5,7 +5,7 @@ import DemoRequestForm from "@/components/institutes/DemoRequestForm";
 import BackgroundVideo from "@/components/ui/BackgroundVideo";
 
 export const metadata = {
-  title: "For Institutes — Prepify B2B Testing Server",
+  title: "For Institutes - Quero B2B Testing Server",
   description: "Enterprise CBT simulation, multi-center roll number management, and director performance analytics for coaching institutes.",
 };
 

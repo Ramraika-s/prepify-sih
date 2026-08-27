@@ -47,7 +47,7 @@ export function AdminCounselingReviewsClient() {
       {rows.map((r: any) => (
         <div key={r.id} className="rounded-xl border border-border bg-card p-3">
           <div className="flex items-center justify-between">
-            <div className="font-semibold text-sm">{r.colleges?.name ?? "—"}</div>
+            <div className="font-semibold text-sm">{r.colleges?.name ?? "-"}</div>
             <div className="flex gap-1">
               <Button size="sm" variant={r.is_verified ? "default" : "outline"} onClick={() => verify({ id: r.id, v: !r.is_verified })}>
                 <BadgeCheck size={12} /> {r.is_verified ? "Verified" : "Verify"}

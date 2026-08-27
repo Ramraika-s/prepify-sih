@@ -103,8 +103,8 @@ export function CollegeDetailClient({ id }: { id: string }) {
         <h1 className="text-lg font-bold">{college.name}</h1>
         <p className="text-xs text-muted-foreground">{college.city ? `${college.city}, ` : ""}{college.state} · {college.institution_type}</p>
         <div className="grid grid-cols-2 gap-2 mt-3 text-xs">
-          <div><span className="text-muted-foreground">Fees:</span> {college.annual_fees_min || college.annual_fees_max ? `₹${college.annual_fees_min ?? "?"} – ₹${college.annual_fees_max ?? "?"}` : "—"}</div>
-          <div><span className="text-muted-foreground">Seats:</span> {college.total_seats ?? "—"}</div>
+          <div><span className="text-muted-foreground">Fees:</span> {college.annual_fees_min || college.annual_fees_max ? `₹${college.annual_fees_min ?? "?"} – ₹${college.annual_fees_max ?? "?"}` : "-"}</div>
+          <div><span className="text-muted-foreground">Seats:</span> {college.total_seats ?? "-"}</div>
           <div><span className="text-muted-foreground">Hostel:</span> {college.hostel_available ? "Yes" : "No"}</div>
           <div><span className="text-muted-foreground">Bond:</span> {college.bond_years ? `${college.bond_years} yr` : "None"}</div>
           <div><span className="text-muted-foreground">NMC:</span> {college.nmc_recognized ? "Recognized" : "Not recognized"}</div>
@@ -120,7 +120,7 @@ export function CollegeDetailClient({ id }: { id: string }) {
             {RATING_FIELDS.map(([k, label]) => (
               <div key={k} className="flex items-center justify-between">
                 <span className="text-muted-foreground">{label}</span>
-                <span className="flex items-center gap-1 font-medium"><Star size={12} className="fill-amber-500 text-amber-500" />{avg[k] ?? "—"}</span>
+                <span className="flex items-center gap-1 font-medium"><Star size={12} className="fill-amber-500 text-amber-500" />{avg[k] ?? "-"}</span>
               </div>
             ))}
           </div>
@@ -147,7 +147,7 @@ export function CollegeDetailClient({ id }: { id: string }) {
 
       <section className="space-y-2">
         <h2 className="font-semibold text-sm">Recent reviews</h2>
-        {reviews.length === 0 ? <p className="text-xs text-muted-foreground">No reviews yet — be the first.</p> :
+        {reviews.length === 0 ? <p className="text-xs text-muted-foreground">No reviews yet - be the first.</p> :
           reviews.slice(0, 20).map((r: any) => (
             <div key={r.id} className="rounded-2xl border border-border bg-card p-3">
               <div className="flex items-center justify-between text-[11px] text-muted-foreground">

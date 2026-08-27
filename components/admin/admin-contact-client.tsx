@@ -117,7 +117,7 @@ export function AdminContactClient() {
             type="email"
             value={form.support_email}
             onChange={(e) => setForm({ ...form, support_email: e.target.value })}
-            placeholder="support@Prepify.in"
+            placeholder="support@Quero.in"
           />
         </div>
 
@@ -144,7 +144,7 @@ export function AdminContactClient() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
-            <Label>Support hours — days</Label>
+            <Label>Support hours - days</Label>
             <Input
               value={form.support_hours_days}
               onChange={(e) => setForm({ ...form, support_hours_days: e.target.value })}
@@ -152,7 +152,7 @@ export function AdminContactClient() {
             />
           </div>
           <div>
-            <Label>Support hours — time</Label>
+            <Label>Support hours - time</Label>
             <Input
               value={form.support_hours_time}
               onChange={(e) => setForm({ ...form, support_hours_time: e.target.value })}
@@ -168,7 +168,7 @@ export function AdminContactClient() {
               <Input
                 value={form.instagram_url ?? ""}
                 onChange={(e) => setForm({ ...form, instagram_url: e.target.value })}
-                placeholder="https://instagram.com/Prepify"
+                placeholder="https://instagram.com/Quero"
               />
             </div>
             <div>
@@ -176,7 +176,7 @@ export function AdminContactClient() {
               <Input
                 value={form.youtube_url ?? ""}
                 onChange={(e) => setForm({ ...form, youtube_url: e.target.value })}
-                placeholder="https://youtube.com/@Prepify"
+                placeholder="https://youtube.com/@Quero"
               />
             </div>
             <div>
@@ -184,7 +184,7 @@ export function AdminContactClient() {
               <Input
                 value={form.telegram_url ?? ""}
                 onChange={(e) => setForm({ ...form, telegram_url: e.target.value })}
-                placeholder="https://t.me/Prepify"
+                placeholder="https://t.me/Quero"
               />
             </div>
             <div className="flex items-center gap-2 pt-6">

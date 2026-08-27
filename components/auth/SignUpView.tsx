@@ -111,7 +111,7 @@ export default function SignUpView() {
             </Link>
             <div className="flex items-center gap-2 group mb-2">
               <span className="text-2xl font-bold tracking-tight text-white group-hover:text-white/90">
-                Prepify
+                Quero
               </span>
               <span className="text-[10px] font-mono text-zinc-400 border border-zinc-800 px-2 py-0.5 rounded-full">
                 JOIN
@@ -185,7 +185,7 @@ export default function SignUpView() {
               </div>
               <h3 className="text-xl font-bold text-white">Account Created Successfully</h3>
               <p className="text-xs sm:text-sm text-zinc-400 max-w-sm mx-auto">
-                Welcome to Prepify! Setting up your {role === "student" ? "Student CBT Dashboard" : role === "institute" ? "Institute Portal Workspace" : "Mentor Directory Profile"}...
+                Welcome to Quero! Setting up your {role === "student" ? "Student CBT Dashboard" : role === "institute" ? "Institute Portal Workspace" : "Mentor Directory Profile"}...
               </p>
               <div className="pt-4 flex items-center justify-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-white animate-ping" />
@@ -334,7 +334,7 @@ export default function SignUpView() {
                     <input
                       type="email"
                       required
-                      placeholder="mentor.physics@prepify.ai"
+                      placeholder="mentor.physics@quero.ai"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full px-4 py-3 bg-black/70 border border-zinc-800 rounded-xl text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-1 focus:ring-white/20 transition-all"
@@ -468,7 +468,7 @@ export default function SignUpView() {
           {/* Footer Sign In Link */}
           <div className="mt-8 pt-6 border-t border-zinc-800/80 text-center">
             <p className="text-xs text-zinc-400">
-              Already have a Prepify account?{" "}
+              Already have a Quero account?{" "}
               <Link href="/sign-in" className="text-white font-medium hover:underline">
                 Sign in to your account
               </Link>

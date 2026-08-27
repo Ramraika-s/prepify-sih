@@ -42,7 +42,7 @@ export function AdminLayoutClient({ children }: { children: React.ReactNode }) {
             <Link href="/" className="text-muted-foreground hover:text-foreground">
               <ArrowLeft size={18} />
             </Link>
-            <h1 className="font-bold">Prepify Admin</h1>
+            <h1 className="font-bold">Quero Admin</h1>
           </div>
         </div>
         <nav className="mx-auto max-w-6xl px-5 pb-2 flex gap-1 overflow-x-auto">

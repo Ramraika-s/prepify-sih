@@ -5,8 +5,8 @@ import TechStackBanner from "@/components/features/TechStackBanner";
 import BackgroundVideo from "@/components/ui/BackgroundVideo";
 
 export const metadata = {
-  title: "Platform Features — Prepify Architecture",
-  description: "Explore the technical architecture powering Prepify's 1:1 NTA CBT engine, exam hall telemetry, and institutional test hosting.",
+  title: "Platform Features - Quero Architecture",
+  description: "Explore the technical architecture powering Quero's 1:1 NTA CBT engine, exam hall telemetry, and institutional test hosting.",
 };
 
 export default function FeaturesPage() {

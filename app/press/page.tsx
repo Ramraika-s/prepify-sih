@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Press & News | Prepify",
-  description: "Latest news, press releases, and media resources for Prepify.",
+  title: "Press & News | Quero",
+  description: "Latest news, press releases, and media resources for Quero.",
 };
 
 export default function PressPage() {
@@ -17,14 +17,14 @@ export default function PressPage() {
             ← Back to Home
           </Link>
           <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">Press & News</h1>
-          <p className="text-xl text-zinc-400 font-light">The latest updates from the Prepify ecosystem.</p>
+          <p className="text-xl text-zinc-400 font-light">The latest updates from the Quero ecosystem.</p>
         </header>
 
         <section className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 backdrop-blur-2xl">
           <div className="space-y-8">
             <article className="pb-8 border-b border-white/10">
               <time className="text-xs font-mono text-zinc-500 mb-2 block">August 2026</time>
-              <h3 className="text-2xl font-bold mb-3">Prepify launches Enterprise Institute Portal</h3>
+              <h3 className="text-2xl font-bold mb-3">Quero launches Enterprise Institute Portal</h3>
               <p className="text-zinc-400 font-light leading-relaxed">
                 Empowering coaching centers to assign faculty, track student cohorts, and manage high-scale CBT testing via our robust new RBAC architecture.
               </p>

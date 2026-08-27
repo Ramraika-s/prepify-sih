@@ -64,7 +64,7 @@ export function AdminCounselingCutoffsClient() {
       reasons.push("opening_rank invalid"); status = "error";
     }
     if (raw.college_name?.trim() && !collegeByName.has(norm(raw.college_name))) {
-      reasons.push("college not found — will be skipped unless created");
+      reasons.push("college not found - will be skipped unless created");
       createCollege = false;
       if (status !== "error") status = "warning";
     }
@@ -163,7 +163,7 @@ export function AdminCounselingCutoffsClient() {
           {missingRows.length > 0 && (
             <div className="rounded-2xl border border-amber-500/40 bg-amber-500/10 p-3 text-xs space-y-2">
               <div className="font-semibold flex items-center gap-1"><AlertTriangle size={12} /> {missingRows.length} rows reference a college not in the database</div>
-              <p className="text-muted-foreground">Never silently created. Tick to auto-create with default (government, active) — you can edit the college afterwards.</p>
+              <p className="text-muted-foreground">Never silently created. Tick to auto-create with default (government, active) - you can edit the college afterwards.</p>
               <label className="flex items-center gap-2">
                 <input type="checkbox" onChange={(e) => setRows(rows.map((r) => r.reasons.some((x) => x.startsWith("college not found")) ? { ...r, createCollege: e.target.checked, excluded: !e.target.checked && r.status === "warning" ? false : r.excluded } : r))} />
                 Create missing colleges automatically

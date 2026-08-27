@@ -263,7 +263,7 @@ export function AdminContentImportClient() {
   }
 
   function downloadTemplate() {
-    downloadCSV("Prepify-mcq-template.csv", [
+    downloadCSV("Quero-mcq-template.csv", [
       [...COLS],
       ["Physics", "Kinematics", "Motion in a straight line", "What is the SI unit of velocity?", "m/s", "m/s²", "km/h", "cm/s", "", "1", "Velocity is displacement per unit time", "easy", "false", "", ""],
     ]);

@@ -14,30 +14,43 @@ export interface BuildTestInput {
   subjectId?: string | null;
   chapterId?: string | null;
   topicId?: string | null;
-  /** When set, the pool is the global bank plus this institute's approved questions, and the test is tagged with it. */
+  /** When set, the pool includes this institute's questions, and the test is tagged with it. */
   instituteId?: string | null;
+  /** When true with instituteId set, the pool is ONLY this institute's questions (no global bank). */
+  instituteOnly?: boolean;
   filters?: {
     subjectIds?: string[];
+    chapterIds?: string[];
     difficulties?: string[];
     isPyq?: boolean;
     pyqYear?: number | null;
     pyqExam?: string | null;
+    excludeQuestionIds?: string[];
   };
 }
 
 export async function buildAndStartTest(input: BuildTestInput): Promise<string> {
   // 1) Sample question IDs
   let q = supabase.from("questions").select("id").eq("status", "approved");
-  if (input.instituteId) q = q.or(`institute_id.is.null,institute_id.eq.${input.instituteId}`);
-  else q = q.is("institute_id", null);
+  if (input.instituteId) {
+    q = input.instituteOnly
+      ? q.eq("institute_id", input.instituteId)
+      : q.or(`institute_id.is.null,institute_id.eq.${input.instituteId}`);
+  } else {
+    q = q.is("institute_id", null);
+  }
   if (input.chapterId) q = q.eq("chapter_id", input.chapterId);
   else if (input.topicId) q = q.eq("topic_id", input.topicId);
   else if (input.subjectId) q = q.eq("subject_id", input.subjectId);
   if (input.filters?.subjectIds?.length) q = q.in("subject_id", input.filters.subjectIds);
+  if (input.filters?.chapterIds?.length) q = q.in("chapter_id", input.filters.chapterIds);
   if (input.filters?.difficulties?.length) q = q.in("difficulty", input.filters.difficulties);
   if (input.filters?.isPyq) q = q.eq("is_pyq", true);
   if (input.filters?.pyqYear) q = q.eq("pyq_year", input.filters.pyqYear);
   if (input.filters?.pyqExam) q = q.eq("pyq_exam", input.filters.pyqExam);
+  if (input.filters?.excludeQuestionIds?.length) {
+    q = q.not("id", "in", `(${input.filters.excludeQuestionIds.join(",")})`);
+  }
 
   const { data: pool, error: poolErr } = await q.limit(500);
   if (poolErr) throw poolErr;

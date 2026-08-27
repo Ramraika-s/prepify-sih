@@ -48,7 +48,7 @@ export function AdminDashboardClient() {
         return (
           <div key={c.label} className="rounded-2xl bg-card border border-border p-4 shadow-card">
             <Icon size={18} className="text-primary mb-2" />
-            <div className="text-2xl font-bold">{c.value ?? "—"}</div>
+            <div className="text-2xl font-bold">{c.value ?? "-"}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{c.label}</div>
           </div>
         );

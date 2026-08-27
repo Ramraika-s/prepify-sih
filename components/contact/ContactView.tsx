@@ -68,7 +68,7 @@ export default function ContactView() {
               Get in <span className="text-zinc-500">touch.</span>
             </h1>
             <p className="text-sm sm:text-base text-zinc-400 leading-relaxed max-w-2xl mx-auto">
-              Whether you are a student facing a technical issue, an institute looking for a custom B2B deployment, or a mentor wanting to join our faculty—our team is ready to assist.
+              Whether you are a student facing a technical issue, an institute looking for a custom B2B deployment, or a mentor wanting to join our faculty-our team is ready to assist.
             </p>
           </motion.div>
         </div>
@@ -93,7 +93,7 @@ export default function ContactView() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-white">Student Support</p>
-                    <p className="text-xs text-zinc-400 mt-1">support@prepify.ai</p>
+                    <p className="text-xs text-zinc-400 mt-1">support@quero.ai</p>
                   </div>
                 </div>
 
@@ -105,7 +105,7 @@ export default function ContactView() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-white">Institute Partnerships</p>
-                    <p className="text-xs text-zinc-400 mt-1">b2b@prepify.ai</p>
+                    <p className="text-xs text-zinc-400 mt-1">b2b@quero.ai</p>
                   </div>
                 </div>
               </div>
@@ -116,7 +116,7 @@ export default function ContactView() {
               <div className="p-6 rounded-2xl bg-[#0D0D12] border border-white/5 relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <p className="text-sm text-zinc-400 leading-relaxed">
-                  Prepify Technologies Pvt. Ltd.<br />
+                  Quero Technologies Pvt. Ltd.<br />
                   TechPark Workspace, Block C<br />
                   Koramangala, Bengaluru<br />
                   Karnataka 560034, India

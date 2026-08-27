@@ -5,7 +5,7 @@ import ExamPatternBreakdown from "@/components/student-cbt/ExamPatternBreakdown"
 import BackgroundVideo from "@/components/ui/BackgroundVideo";
 
 export const metadata = {
-  title: "Student CBT Simulator — NTA JEE, NEET & GATE Practice",
+  title: "Student CBT Simulator - NTA JEE, NEET & GATE Practice",
   description: "Practice in an authentic 1:1 replica of official NTA and GATE test software. Features time-per-question telemetry, negative marking protection, and offline session resilience.",
 };
 

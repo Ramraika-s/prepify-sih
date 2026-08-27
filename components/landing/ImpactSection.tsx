@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 // Anchored to combined 2025 candidate registrations across NEET UG/PG, JEE Main & Advanced, and CUET UG/PG.
 const TOTAL_CANDIDATE_POOL = 57_00_000;
-// Sheets one candidate burns through (mocks, worksheets, admit cards) across a single prep year — constant, independent of adoption.
+// Sheets one candidate burns through (mocks, worksheets, admit cards) across a single prep year - constant, independent of adoption.
 const SHEETS_PER_CANDIDATE = 480;
 // Average sheets of office paper a single tree yields.
 const SHEETS_PER_TREE = 8_564;
@@ -94,7 +94,7 @@ export default function ImpactSection() {
             animate={dragging ? { scale: 1.08 } : { scale: 1 }}
             className="text-[var(--q-content)] font-semibold tabular-nums"
           >
-            {displayAdopt}% of candidates switch to Prepify
+            {displayAdopt}% of candidates switch to Quero
           </motion.span>
           <span>100% adopt</span>
         </div>
@@ -108,12 +108,12 @@ export default function ImpactSection() {
           onPointerDown={() => setDragging(true)}
           onPointerUp={() => setDragging(false)}
           className="mt-3 w-full max-w-xl mx-auto accent-[var(--q-grad-b)] cursor-pointer"
-          aria-label="Percentage of candidates who switch to Prepify"
+          aria-label="Percentage of candidates who switch to Quero"
         />
 
         <p className="mt-6 max-w-xl mx-auto text-sm text-[var(--q-content-subtle)] leading-relaxed">
           Drag it. Every number above recalculates live, anchored only to official NTA and
-          NBEMS registration figures across five major 2025 exams — nothing padded on top.
+          NBEMS registration figures across five major 2025 exams - nothing padded on top.
         </p>
 
         <div className="mt-14 grid grid-cols-3 gap-6 max-w-2xl mx-auto">

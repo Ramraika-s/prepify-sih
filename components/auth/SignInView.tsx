@@ -87,7 +87,7 @@ export default function SignInView() {
             </Link>
             <div className="flex items-center gap-2 group mb-2">
               <span className="text-2xl font-bold tracking-tight text-white group-hover:text-white/90">
-                Prepify
+                Quero
               </span>
               <span className="text-[10px] font-mono text-zinc-400 border border-zinc-800 px-2 py-0.5 rounded-full">
                 PORTAL
@@ -185,10 +185,10 @@ export default function SignInView() {
                     required
                     placeholder={
                       role === "student"
-                        ? "user@prepify.ai"
+                        ? "user@quero.ai"
                         : role === "institute"
                           ? "director@coaching.edu.in"
-                          : "mentor.physics@prepify.ai"
+                          : "mentor.physics@quero.ai"
                     }
                     value={identifier}
                     onChange={(e) => setIdentifier(e.target.value)}
@@ -268,7 +268,7 @@ export default function SignInView() {
                   </>
                 ) : (
                   <>
-                    <span>Sign in to Prepify</span>
+                    <span>Sign in to Quero</span>
                     <span>→</span>
                   </>
                 )}
@@ -331,7 +331,7 @@ export default function SignInView() {
           {/* Footer Sign Up Link */}
           <div className="mt-8 pt-6 border-t border-zinc-800/80 text-center">
             <p className="text-xs text-zinc-400">
-              Don&apos;t have a Prepify account yet?{" "}
+              Don&apos;t have a Quero account yet?{" "}
               <Link href="/sign-up" className="text-white font-medium hover:underline">
                 Sign up for free
               </Link>

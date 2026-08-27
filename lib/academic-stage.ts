@@ -23,7 +23,7 @@ export function stageQuestion(goal: Goal | null | undefined) {
 }
 
 export function stageLabel(value: string | null | undefined) {
-  if (!value) return "—";
+  if (!value) return "-";
   const all = [...UG_STAGES, ...PG_STAGES];
   return all.find((s) => s.value === value)?.label ?? value;
 }

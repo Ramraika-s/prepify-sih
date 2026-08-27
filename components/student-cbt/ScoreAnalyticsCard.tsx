@@ -15,7 +15,7 @@ export default function ScoreAnalyticsCard() {
               Turn Every Mock Test into a Precision Revision Plan
             </h3>
             <p className="text-zinc-400 font-normal leading-relaxed mb-6 text-sm md:text-base">
-              Prepify doesn't just score your test—it diagnoses your decision-making. Discover which questions cost you excessive time, where unforced errors occur, and exactly which topics to revise tonight.
+              Quero doesn't just score your test-it diagnoses your decision-making. Discover which questions cost you excessive time, where unforced errors occur, and exactly which topics to revise tonight.
             </p>
             <ul className="space-y-3 text-xs md:text-sm text-zinc-300 font-mono">
               <li className="flex items-center gap-3">

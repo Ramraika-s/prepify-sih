@@ -145,7 +145,7 @@ export default function InstructionsView({ attemptId }: { attemptId: string }) {
         <ol className="list-decimal pl-5 space-y-2.5 mb-6">
           <li>
             Total duration of <strong>{info.title}</strong> is <strong>{durationMinutes} min</strong>
-            {info.mode === "practice" && " (practice mode — you may take as long as you like)"}.
+            {info.mode === "practice" && " (practice mode - you may take as long as you like)"}.
           </li>
           {info.mode === "timed" && (
             <li>
@@ -267,7 +267,7 @@ export default function InstructionsView({ attemptId }: { attemptId: string }) {
       </main>
 
       <footer className="text-center text-[11px] text-[#666] py-4 border-t border-black/10">
-        © All Rights Reserved - Prepify
+        © All Rights Reserved - Quero
       </footer>
     </div>
   );

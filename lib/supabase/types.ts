@@ -10,32 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.15"
-  }
-  graphql_public: {
-    Tables: {
-      [_ in never]: never
-    }
-    Views: {
-      [_ in never]: never
-    }
-    Functions: {
-      graphql: {
-        Args: {
-          extensions?: Json
-          operationName?: string
-          query?: string
-          variables?: Json
-        }
-        Returns: Json
-      }
-    }
-    Enums: {
-      [_ in never]: never
-    }
-    CompositeTypes: {
-      [_ in never]: never
-    }
+    PostgrestVersion: "14.17"
   }
   public: {
     Tables: {
@@ -505,6 +480,214 @@ export type Database = {
           },
         ]
       }
+      dpps: {
+        Row: {
+          batch_id: string
+          created_at: string
+          created_by: string | null
+          description: string | null
+          due_date: string | null
+          file_path: string | null
+          id: string
+          institute_id: string
+          kind: string
+          subject_id: string | null
+          test_id: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          batch_id: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          due_date?: string | null
+          file_path?: string | null
+          id?: string
+          institute_id: string
+          kind: string
+          subject_id?: string | null
+          test_id?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          batch_id?: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          due_date?: string | null
+          file_path?: string | null
+          id?: string
+          institute_id?: string
+          kind?: string
+          subject_id?: string | null
+          test_id?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dpps_batch_id_fkey"
+            columns: ["batch_id"]
+            isOneToOne: false
+            referencedRelation: "institute_batches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "dpps_institute_id_fkey"
+            columns: ["institute_id"]
+            isOneToOne: false
+            referencedRelation: "institutes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "dpps_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "dpps_test_id_fkey"
+            columns: ["test_id"]
+            isOneToOne: false
+            referencedRelation: "tests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      institute_batch_faculty: {
+        Row: {
+          assigned_by: string | null
+          batch_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          assigned_by?: string | null
+          batch_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          assigned_by?: string | null
+          batch_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "institute_batch_faculty_batch_id_fkey"
+            columns: ["batch_id"]
+            isOneToOne: false
+            referencedRelation: "institute_batches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      institute_batches: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          institute_id: string
+          name: string
+          subject_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          institute_id: string
+          name: string
+          subject_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          institute_id?: string
+          name?: string
+          subject_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "institute_batches_institute_id_fkey"
+            columns: ["institute_id"]
+            isOneToOne: false
+            referencedRelation: "institutes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "institute_batches_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      institute_enrollments: {
+        Row: {
+          batch_id: string | null
+          created_at: string
+          id: string
+          institute_id: string
+          requested_at: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          batch_id?: string | null
+          created_at?: string
+          id?: string
+          institute_id: string
+          requested_at?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          batch_id?: string | null
+          created_at?: string
+          id?: string
+          institute_id?: string
+          requested_at?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "institute_enrollments_batch_id_fkey"
+            columns: ["batch_id"]
+            isOneToOne: false
+            referencedRelation: "institute_batches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "institute_enrollments_institute_id_fkey"
+            columns: ["institute_id"]
+            isOneToOne: false
+            referencedRelation: "institutes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       institute_interest_leads: {
         Row: {
           contact_name: string
@@ -544,6 +727,7 @@ export type Database = {
           created_by: string | null
           id: string
           is_active: boolean
+          join_code: string
           name: string
           slug: string
           updated_at: string
@@ -553,6 +737,7 @@ export type Database = {
           created_by?: string | null
           id?: string
           is_active?: boolean
+          join_code?: string
           name: string
           slug: string
           updated_at?: string
@@ -562,6 +747,7 @@ export type Database = {
           created_by?: string | null
           id?: string
           is_active?: boolean
+          join_code?: string
           name?: string
           slug?: string
           updated_at?: string
@@ -922,6 +1108,39 @@ export type Database = {
           id?: string
           is_active?: boolean
           subscribed_at?: string
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          body: string | null
+          created_at: string
+          id: string
+          link: string | null
+          read_at: string | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          link?: string | null
+          read_at?: string | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          link?: string | null
+          read_at?: string | null
+          title?: string
+          type?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -1442,6 +1661,7 @@ export type Database = {
       }
       tests: {
         Row: {
+          batch_id: string | null
           chapter_id: string | null
           created_at: string
           created_by: string | null
@@ -1457,6 +1677,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          batch_id?: string | null
           chapter_id?: string | null
           created_at?: string
           created_by?: string | null
@@ -1472,6 +1693,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          batch_id?: string | null
           chapter_id?: string | null
           created_at?: string
           created_by?: string | null
@@ -1487,6 +1709,13 @@ export type Database = {
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "tests_batch_id_fkey"
+            columns: ["batch_id"]
+            isOneToOne: false
+            referencedRelation: "institute_batches"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "tests_chapter_id_fkey"
             columns: ["chapter_id"]
@@ -1663,6 +1892,15 @@ export type Database = {
         Returns: undefined
       }
       admin_upsert_question: { Args: { _payload: Json }; Returns: string }
+      complete_onboarding: {
+        Args: {
+          p_preferences_data: Json
+          p_profile_data: Json
+          p_user_id: string
+        }
+        Returns: undefined
+      }
+      custom_access_token_hook: { Args: { event: Json }; Returns: Json }
       delete_my_account: { Args: never; Returns: undefined }
       enforce_rate_limit: {
         Args: { _action: string; _max: number; _window_seconds: number }
@@ -1696,9 +1934,41 @@ export type Database = {
         Args: { _email: string; _institute_id: string; _subject_id: string }
         Returns: Json
       }
+      institute_announce_test: {
+        Args: { _test_id: string }
+        Returns: undefined
+      }
+      institute_assign_batch_faculty: {
+        Args: { _assign: boolean; _batch_id: string; _user_id: string }
+        Returns: undefined
+      }
+      institute_create_dpp_file: {
+        Args: {
+          _batch_id: string
+          _description: string
+          _due_date?: string
+          _file_path: string
+          _title: string
+        }
+        Returns: string
+      }
+      institute_create_dpp_questions: {
+        Args: {
+          _batch_id: string
+          _description: string
+          _due_date?: string
+          _question_ids: string[]
+          _title: string
+        }
+        Returns: string
+      }
       institute_faculty_list: { Args: { _institute_id: string }; Returns: Json }
       institute_remove_faculty: {
         Args: { _role_id: string }
+        Returns: undefined
+      }
+      institute_review_enrollment: {
+        Args: { _approve: boolean; _batch_id?: string; _enrollment_id: string }
         Returns: undefined
       }
       is_institute_member: {
@@ -1706,6 +1976,27 @@ export type Database = {
         Returns: boolean
       }
       is_mentor_owner: { Args: { _mentor_id: string }; Returns: boolean }
+      join_institute_by_code: {
+        Args: { _code: string }
+        Returns: {
+          institute_id: string
+          institute_name: string
+          status: string
+        }[]
+      }
+      mark_notifications_read: { Args: { _ids?: string[] }; Returns: undefined }
+      my_institute_enrollment: {
+        Args: never
+        Returns: {
+          batch_id: string
+          batch_name: string
+          enrollment_id: string
+          institute_id: string
+          institute_name: string
+          requested_at: string
+          status: string
+        }[]
+      }
       submit_answer: {
         Args: { _attempt_id: string; _option_id: string; _question_id: string }
         Returns: {
@@ -1732,6 +2023,7 @@ export type Database = {
         | "daily_pyq"
         | "custom"
         | "pyq"
+        | "dpp"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1857,9 +2149,6 @@ export type CompositeTypes<
     : never
 
 export const Constants = {
-  graphql_public: {
-    Enums: {},
-  },
   public: {
     Enums: {
       app_role: [
@@ -1879,6 +2168,7 @@ export const Constants = {
         "daily_pyq",
         "custom",
         "pyq",
+        "dpp",
       ],
     },
   },

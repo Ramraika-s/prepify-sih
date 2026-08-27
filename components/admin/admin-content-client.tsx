@@ -335,8 +335,8 @@ function QuestionsTab() {
             {data.map((q: any) => (
               <tr key={q.id} className="border-t border-border">
                 <td className="px-4 py-2 max-w-xl truncate">{q.question_text}</td>
-                <td className="px-4 py-2">{q.difficulty ?? "—"}</td>
-                <td className="px-4 py-2">{q.is_pyq ? `${q.pyq_exam ?? ""} ${q.pyq_year ?? ""}` : "—"}</td>
+                <td className="px-4 py-2">{q.difficulty ?? "-"}</td>
+                <td className="px-4 py-2">{q.is_pyq ? `${q.pyq_exam ?? ""} ${q.pyq_year ?? ""}` : "-"}</td>
                 <td className="px-4 py-2 text-right">
                   <Button size="icon" variant="ghost" onClick={() => openEdit(q)}><Pencil size={14} /></Button>
                   <Button size="icon" variant="ghost" onClick={() => del(q.id)}><Trash2 size={14} /></Button>
@@ -435,7 +435,7 @@ function QuestionDialog({ value, onChange, onClose, onSaved }: { value: Question
             <div>
               <Label>Difficulty</Label>
               <Select value={value.difficulty ?? ""} onValueChange={(v) => onChange({ ...value, difficulty: v })}>
-                <SelectTrigger><SelectValue placeholder="—" /></SelectTrigger>
+                <SelectTrigger><SelectValue placeholder="-" /></SelectTrigger>
                 <SelectContent><SelectItem value="easy">Easy</SelectItem><SelectItem value="medium">Medium</SelectItem><SelectItem value="hard">Hard</SelectItem></SelectContent>
               </Select>
             </div>

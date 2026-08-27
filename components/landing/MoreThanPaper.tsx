@@ -26,7 +26,7 @@ const CARDS: { n: string; title: string; body: string; style: CardStyle }[] = [
   {
     n: "02",
     title: "Mistake-based, AI-generated retests",
-    body: "Instead of handing out a generic mock, Prepify can build a fresh test from a student's own past mistakes and weak topics, so practice time actually closes gaps.",
+    body: "Instead of handing out a generic mock, Quero can build a fresh test from a student's own past mistakes and weak topics, so practice time actually closes gaps.",
     style: "blue",
   },
   {
@@ -74,7 +74,7 @@ export default function MoreThanPaper() {
           transition={{ delay: 0.08 }}
           className="mt-5 text-[var(--q-content-muted)] leading-relaxed"
         >
-          Prepify adds a layer of intelligence and exam-day realism that no institute, however
+          Quero adds a layer of intelligence and exam-day realism that no institute, however
           large, currently offers at an accessible price.
         </motion.p>
       </div>

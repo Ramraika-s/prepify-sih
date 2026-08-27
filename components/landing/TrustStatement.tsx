@@ -23,7 +23,7 @@ export default function TrustStatement() {
         </svg>
         <p className="text-[var(--q-content-muted)] leading-relaxed">
           <span className="font-semibold text-[var(--q-content)]">Sourced properly, not scraped. </span>
-          Prepify&rsquo;s question bank draws from each exam&rsquo;s own official papers and answer
+          Quero&rsquo;s question bank draws from each exam&rsquo;s own official papers and answer
           keys, across NEET, JEE, CUET and more, with explanations written by our own faculty
           rather than bulk-imported from copyrighted PYQ compilations.
         </p>

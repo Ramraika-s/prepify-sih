@@ -5,7 +5,8 @@ import { supabase } from "@/lib/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { useUserGoal } from "@/lib/user-goal";
 import { useInstituteRole } from "@/lib/institute";
-import { ArrowLeft, Timer, BookOpen, Building2 } from "lucide-react";
+import { useInstituteContextForStudent } from "@/lib/institute-student";
+import { ArrowLeft, Timer, BookOpen, Building2, Layers } from "lucide-react";
 import { useState, useMemo } from "react";
 import { toast } from "sonner";
 import { buildAndStartTest } from "@/lib/test-builder";
@@ -25,6 +26,7 @@ const TYPES: { key: TestType; label: string; desc: string }[] = [
 export function NewTestClient() {
   const searchParams = useSearchParams();
   const initialType = (searchParams.get("type") as TestType) ?? "chapter";
+  const source = searchParams.get("source") as "pyq" | "institute" | "both" | null;
 
   const { user } = useAuth();
   const router = useRouter();
@@ -40,7 +42,14 @@ export function NewTestClient() {
   const [submitting, setSubmitting] = useState(false);
 
   const { info: instituteInfo } = useInstituteRole();
-  const instituteId = instituteInfo?.role === "institute_admin" ? instituteInfo.instituteId : null;
+  const staffInstituteId = instituteInfo?.role === "institute_admin" ? instituteInfo.instituteId : null;
+  const { enrollment: studentEnrollment } = useInstituteContextForStudent();
+  const studentInstituteId = studentEnrollment?.status === "active" ? studentEnrollment.institute_id : null;
+
+  const effectiveInstituteId = source ? studentInstituteId : staffInstituteId;
+  const instituteOnly = source === "institute";
+  const forcePyq = source === "pyq";
+
   const { goal, examType } = useUserGoal();
 
   const { data: subjects = [] } = useQuery({
@@ -101,8 +110,12 @@ export function NewTestClient() {
             : (chapters.find((c) => c.id === chapterId)?.subject_id ?? subjectId),
         chapterId: type === "chapter" ? chapterId : null,
         topicId: type === "topic" ? topicId : null,
-        instituteId,
-        filters: type === "custom" ? { subjectIds: [subjectId], difficulties } : undefined,
+        instituteId: effectiveInstituteId,
+        instituteOnly,
+        filters: {
+          ...(type === "custom" ? { subjectIds: [subjectId], difficulties } : {}),
+          ...(forcePyq ? { isPyq: true } : {}),
+        },
       });
       router.push(`/test/${attemptId}/instructions`);
     } catch (e) {
@@ -124,12 +137,36 @@ export function NewTestClient() {
       </header>
 
       <main className="mx-auto max-w-lg px-5 py-5 space-y-5">
-        {instituteId && (
+        {source === "pyq" && (
+          <div className="flex items-center gap-2 rounded-2xl border border-primary/30 bg-primary-soft px-4 py-3 text-xs">
+            <BookOpen size={14} className="text-primary shrink-0" />
+            <span>Sourcing only official previous-year questions.</span>
+          </div>
+        )}
+        {source === "institute" && (
           <div className="flex items-center gap-2 rounded-2xl border border-primary/30 bg-primary-soft px-4 py-3 text-xs">
             <Building2 size={14} className="text-primary shrink-0" />
             <span>
-              Building for <strong>{instituteInfo?.instituteName ?? "your institute"}</strong> —
-              draws from the Prepify question bank plus your institute&apos;s approved questions.
+              Sourcing only <strong>{studentEnrollment?.institute_name ?? "your institute"}</strong>&apos;s
+              question bank - DPP questions and its own previous exams.
+            </span>
+          </div>
+        )}
+        {source === "both" && (
+          <div className="flex items-center gap-2 rounded-2xl border border-primary/30 bg-primary-soft px-4 py-3 text-xs">
+            <Layers size={14} className="text-primary shrink-0" />
+            <span>
+              Mixing the global PYQ bank with <strong>{studentEnrollment?.institute_name ?? "your institute"}</strong>&apos;s
+              own questions.
+            </span>
+          </div>
+        )}
+        {!source && staffInstituteId && (
+          <div className="flex items-center gap-2 rounded-2xl border border-primary/30 bg-primary-soft px-4 py-3 text-xs">
+            <Building2 size={14} className="text-primary shrink-0" />
+            <span>
+              Building for <strong>{instituteInfo?.instituteName ?? "your institute"}</strong> -
+              draws from the Quero question bank plus your institute&apos;s approved questions.
             </span>
           </div>
         )}

@@ -67,14 +67,14 @@ export function AdminMentorsClient() {
     },
   });
 
-  const nameOf = (id: string) => mentors.find((m: any) => m.id === id)?.full_name ?? "—";
+  const nameOf = (id: string) => mentors.find((m: any) => m.id === id)?.full_name ?? "-";
 
   const setStatus = async (m: MentorRow, status: string) => {
     try {
       const { error } = await supabase.from("mentors").update({ verification_status: status }).eq("id", m.id);
       if (error) throw error;
       await logAdminAction(`mentor.${status}`, "mentors", m.id);
-      toast.success(`${m.full_name} — ${status}`);
+      toast.success(`${m.full_name} - ${status}`);
       qc.invalidateQueries(); window.location.reload();
     } catch (e: any) {
       toast.error(e.message);

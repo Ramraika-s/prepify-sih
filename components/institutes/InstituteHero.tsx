@@ -16,7 +16,7 @@ export default function InstituteHero() {
           </h1>
 
           <p className="text-base sm:text-lg font-normal text-zinc-400 leading-relaxed mb-8">
-            Coaching institutes across Kota, Delhi, Hyderabad, and Patna rely on Prepify to host proprietary test papers, manage multi-center student roll numbers, and deliver real-time director performance dashboards.
+            Coaching institutes across Kota, Delhi, Hyderabad, and Patna rely on Quero to host proprietary test papers, manage multi-center student roll numbers, and deliver real-time director performance dashboards.
           </p>
 
           <div className="flex flex-wrap items-center gap-4">

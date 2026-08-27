@@ -18,21 +18,21 @@ const sampleQuestions: Record<ExamType, QuestionData[]> = {
   jee: [
     {
       id: 1,
-      subject: "Physics — Electrostatics",
+      subject: "Physics - Electrostatics",
       question: "A point charge q is placed at a distance d/2 directly above the center of a square of side d. The electric flux through the square is:",
       options: ["q / ε₀", "q / 6ε₀", "q / 4ε₀", "q / 2ε₀"],
       correctOpt: 1,
     },
     {
       id: 2,
-      subject: "Chemistry — Coordination Compounds",
+      subject: "Chemistry - Coordination Compounds",
       question: "Which of the following complexes is expected to absorb visible light of maximum wavelength?",
       options: ["[Co(H₂O)₆]³⁺", "[Co(NH₃)₆]³⁺", "[Co(CN)₆]³⁻", "[Co(F)₆]³⁻"],
       correctOpt: 3,
     },
     {
       id: 3,
-      subject: "Mathematics — Calculus",
+      subject: "Mathematics - Calculus",
       question: "The area bounded by the curve y = x |x|, x-axis and the ordinates x = -1 and x = 1 is:",
       options: ["1/3 sq units", "2/3 sq units", "1 sq unit", "4/3 sq units"],
       correctOpt: 1,
@@ -41,21 +41,21 @@ const sampleQuestions: Record<ExamType, QuestionData[]> = {
   neet: [
     {
       id: 1,
-      subject: "Biology — Human Physiology",
+      subject: "Biology - Human Physiology",
       question: "Which one of the following hormones is responsible for triggering ovulation in the human female?",
       options: ["FSH", "LH", "Estrogen", "Progesterone"],
       correctOpt: 1,
     },
     {
       id: 2,
-      subject: "Chemistry — Biomolecules",
+      subject: "Chemistry - Biomolecules",
       question: "Which of the following vitamins is water-soluble and acts as a coenzyme in amino acid metabolism?",
       options: ["Vitamin A", "Vitamin D", "Pyridoxine (B₆)", "Vitamin K"],
       correctOpt: 2,
     },
     {
       id: 3,
-      subject: "Physics — Ray Optics",
+      subject: "Physics - Ray Optics",
       question: "A convex lens of focal length 20 cm forms a real image twice the size of the object. The distance of the object from the lens is:",
       options: ["10 cm", "30 cm", "40 cm", "60 cm"],
       correctOpt: 1,
@@ -64,7 +64,7 @@ const sampleQuestions: Record<ExamType, QuestionData[]> = {
   gate: [
     {
       id: 1,
-      subject: "Algorithms — Time Complexity",
+      subject: "Algorithms - Time Complexity",
       question: "What is the worst-case time complexity of finding the median of an unsorted array of n integers using the Deterministic Selection (Median-of-Medians) algorithm?",
       options: ["O(n log n)", "O(n)", "O(n²)", "O(log n)"],
       correctOpt: 1,
@@ -72,7 +72,7 @@ const sampleQuestions: Record<ExamType, QuestionData[]> = {
     },
     {
       id: 2,
-      subject: "Computer Networks — Subnetting (NAT)",
+      subject: "Computer Networks - Subnetting (NAT)",
       question: "Calculate the total number of usable host IP addresses in a IPv4 subnet with mask /26.",
       options: ["64", "62", "128", "254"],
       correctOpt: 1,
@@ -80,7 +80,7 @@ const sampleQuestions: Record<ExamType, QuestionData[]> = {
     },
     {
       id: 3,
-      subject: "Operating Systems — Process Scheduling",
+      subject: "Operating Systems - Process Scheduling",
       question: "Consider 3 processes with CPU burst times 6, 8, 2 ms arriving at time 0. The average waiting time under Shortest Remaining Time First (SRTF) is:",
       options: ["3.0 ms", "4.33 ms", "5.5 ms", "7.0 ms"],
       correctOpt: 0,

@@ -9,31 +9,54 @@ import { toast } from "sonner";
 import { buildAndStartTest } from "@/lib/test-builder";
 import { useRouter } from "next/navigation";
 
-const UG_SUBJECT_SLUGS = new Set(["physics", "chemistry", "botany", "zoology"]);
+const EXAMS: { value: string; label: string; examType: string }[] = [
+  { value: "NEET-UG", label: "NEET UG", examType: "NEET_UG" },
+  { value: "NEET-PG", label: "NEET PG", examType: "NEET_PG" },
+  { value: "JEE-MAIN", label: "JEE Main", examType: "JEE" },
+  { value: "JEE-ADVANCED", label: "JEE Advanced", examType: "JEE" },
+  { value: "CUET-UG", label: "CUET UG", examType: "CUET" },
+];
 
 export function PyqClient({
   initialSubjects,
-  initialYears,
 }: {
-  initialSubjects: { id: string; name: string; slug: string; color: string }[];
-  initialYears: number[];
+  initialSubjects: { id: string; name: string; slug: string; color: string; exam_type: string }[];
 }) {
   const { user } = useAuth();
   const router = useRouter();
+  const [exam, setExam] = useState(EXAMS[0].value);
   const [year, setYear] = useState<number | null>(null);
   const [subjectId, setSubjectId] = useState<string | null>(null);
-  const exam = "NEET-UG";
   const [starting, setStarting] = useState(false);
 
-  const ugSubjects = initialSubjects.filter((s) => UG_SUBJECT_SLUGS.has(s.slug));
+  const activeExam = EXAMS.find((e) => e.value === exam) ?? EXAMS[0];
+  const examSubjects = initialSubjects.filter((s) => s.exam_type === activeExam.examType);
+
+  const { data: years = [] } = useQuery({
+    queryKey: ["pyq-years", exam],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("questions")
+        .select("pyq_year")
+        .eq("is_pyq", true)
+        .eq("pyq_exam", exam)
+        .not("pyq_year", "is", null);
+      const set = new Set<number>();
+      data?.forEach((r) => r.pyq_year != null && set.add(r.pyq_year));
+      return Array.from(set).sort((a, b) => b - a);
+    },
+  });
 
   const { data: questions = [], isLoading } = useQuery({
     queryKey: ["pyq-list", year, subjectId, exam],
     queryFn: async () => {
-      let q = supabase.from("questions").select("id, question_text, pyq_year, pyq_exam, subject_id, subjects(name, slug, color)").eq("is_pyq", true);
+      let q = supabase
+        .from("questions")
+        .select("id, question_text, pyq_year, pyq_exam, subject_id, subjects(name, slug, color)")
+        .eq("is_pyq", true)
+        .eq("pyq_exam", exam);
       if (year) q = q.eq("pyq_year", year);
       if (subjectId) q = q.eq("subject_id", subjectId);
-      if (exam) q = q.eq("pyq_exam", exam);
       const { data } = await q.order("pyq_year", { ascending: false }).limit(100);
       return data ?? [];
     },
@@ -45,7 +68,7 @@ export function PyqClient({
     try {
       const attemptId = await buildAndStartTest({
         userId: user.id,
-        title: `PYQ Test${year ? ` ${year}` : ""}`,
+        title: `${activeExam.label} PYQ Test${year ? ` ${year}` : ""}`,
         testType: "pyq",
         mode: "timed",
         durationMinutes: 20,
@@ -53,7 +76,7 @@ export function PyqClient({
         subjectId: subjectId ?? undefined,
         filters: { isPyq: true, pyqYear: year ?? undefined, pyqExam: exam },
       });
-      router.push(`/test/${attemptId}`);
+      router.push(`/test/${attemptId}/instructions`);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Could not start test");
     } finally {
@@ -74,12 +97,32 @@ export function PyqClient({
       </header>
 
       <main className="mx-auto max-w-lg px-5 py-4 space-y-4">
+        {/* Exam chips */}
+        <div>
+          <div className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Exam</div>
+          <div className="flex gap-2 overflow-x-auto pb-1">
+            {EXAMS.map((e) => (
+              <Chip
+                key={e.value}
+                active={exam === e.value}
+                onClick={() => {
+                  setExam(e.value);
+                  setYear(null);
+                  setSubjectId(null);
+                }}
+              >
+                {e.label}
+              </Chip>
+            ))}
+          </div>
+        </div>
+
         {/* Year chips */}
         <div>
           <div className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Year</div>
           <div className="flex gap-2 overflow-x-auto pb-1">
             <Chip active={year === null} onClick={() => setYear(null)}>All</Chip>
-            {initialYears.map((y) => <Chip key={y} active={year === y} onClick={() => setYear(y)}>{y}</Chip>)}
+            {years.map((y) => <Chip key={y} active={year === y} onClick={() => setYear(y)}>{y}</Chip>)}
           </div>
         </div>
 
@@ -88,7 +131,7 @@ export function PyqClient({
           <div className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Subject</div>
           <div className="flex gap-2 overflow-x-auto pb-1">
             <Chip active={subjectId === null} onClick={() => setSubjectId(null)}>All</Chip>
-            {ugSubjects.map((s) => <Chip key={s.id} active={subjectId === s.id} onClick={() => setSubjectId(s.id)}>{s.name}</Chip>)}
+            {examSubjects.map((s) => <Chip key={s.id} active={subjectId === s.id} onClick={() => setSubjectId(s.id)}>{s.name}</Chip>)}
           </div>
         </div>
 
@@ -100,7 +143,7 @@ export function PyqClient({
             return (
               <div key={q.id} className="rounded-2xl bg-card border border-border p-4 shadow-card">
                 <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
-                  <span className="font-semibold text-primary">{subj?.name ?? "—"}</span>
+                  <span className="font-semibold text-primary">{subj?.name ?? "-"}</span>
                   <span>{q.pyq_exam} · {q.pyq_year}</span>
                 </div>
                 <p className="text-sm font-medium leading-snug mt-2">
@@ -111,7 +154,7 @@ export function PyqClient({
           })}
           {!isLoading && questions.length === 0 && (
             <div className="rounded-2xl bg-card border border-border p-6 text-center text-sm text-muted-foreground">
-              No questions match these filters yet.
+              No {activeExam.label} PYQs match these filters yet.
             </div>
           )}
         </div>

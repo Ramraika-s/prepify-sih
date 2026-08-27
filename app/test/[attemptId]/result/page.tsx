@@ -1,7 +1,7 @@
 import ResultView from "@/components/exam/ResultView";
 
 export const metadata = {
-  title: "Test result — Prepify",
+  title: "Test result - Quero",
 };
 
 export default async function ResultPage({

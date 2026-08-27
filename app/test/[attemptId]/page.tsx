@@ -1,7 +1,7 @@
 import ExamRoomView from "@/components/exam/ExamRoomView";
 
 export const metadata = {
-  title: "Test in progress — Prepify",
+  title: "Test in progress - Quero",
 };
 
 export default async function ExamRoomPage({

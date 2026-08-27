@@ -94,7 +94,7 @@ export default function ConstellationField() {
         }
       }
 
-      // cursor links — the field reacts to the mouse
+      // cursor links - the field reacts to the mouse
       for (const s of stars) {
         const dx = s.x - mouse.x;
         const dy = s.y - mouse.y;

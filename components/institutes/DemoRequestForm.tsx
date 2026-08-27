@@ -55,14 +55,14 @@ export default function DemoRequestForm() {
                 <span>1</span>
                 <span>Institute</span>
               </div>
-              <span className="text-zinc-700">—</span>
+              <span className="text-zinc-700">-</span>
               <div className={`flex items-center gap-2 px-3 py-1 rounded-full border ${
                 step === 2 ? "bg-white text-black border-white font-bold" : "bg-zinc-900 border-zinc-800 text-zinc-400"
               }`}>
                 <span>2</span>
                 <span>Batch Size</span>
               </div>
-              <span className="text-zinc-700">—</span>
+              <span className="text-zinc-700">-</span>
               <div className={`flex items-center gap-2 px-3 py-1 rounded-full border ${
                 step === 3 ? "bg-white text-black border-white font-bold" : "bg-zinc-900 border-zinc-800 text-zinc-400"
               }`}>

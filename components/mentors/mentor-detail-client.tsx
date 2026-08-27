@@ -110,7 +110,7 @@ export function MentorDetailClient({ id }: { id: string }) {
       } else if (ticks > 40) {
         window.clearInterval(pollRef.current!); pollRef.current = null;
         setBusy(false);
-        toast.message("Still processing — we'll confirm your session as soon as the payment clears.");
+        toast.message("Still processing - we'll confirm your session as soon as the payment clears.");
       }
     }, 2000);
   };
@@ -129,7 +129,7 @@ export function MentorDetailClient({ id }: { id: string }) {
         key: order.keyId,
         amount: order.amountPaise,
         currency: "INR",
-        name: "Prepify",
+        name: "Quero",
         description: `${order.label} with ${order.mentorName}`,
         order_id: order.orderId,
         prefill: { email: user.email ?? undefined },
@@ -281,7 +281,7 @@ export function MentorDetailClient({ id }: { id: string }) {
                   onClick={async () => {
                     const { error } = await supabase.from("mentor_reviews").update({ is_reported: true }).eq("id", r.id);
                     if (error) toast.error(error.message);
-                    else { toast.success("Reported — our team will review it."); qc.invalidateQueries({ queryKey: ["mentor-reviews", id] }); }
+                    else { toast.success("Reported - our team will review it."); qc.invalidateQueries({ queryKey: ["mentor-reviews", id] }); }
                   }}
                 >
                   <Flag size={11} /> Report

@@ -189,7 +189,7 @@ export default function ExamRoomView({ attemptId }: { attemptId: string }) {
         const raw = sessionStorage.getItem(`exam-marks-${attemptId}`);
         if (raw) seededMarked = new Set(JSON.parse(raw) as string[]);
       } catch {
-        // sessionStorage unavailable — marks just won't persist across a refresh
+        // sessionStorage unavailable - marks just won't persist across a refresh
       }
 
       setQuestions(ordered);
@@ -352,7 +352,7 @@ export default function ExamRoomView({ attemptId }: { attemptId: string }) {
   }, [attemptId, router]);
 
   const handleAutoSubmit = useCallback(() => {
-    toast.message("Time's up — submitting your test.");
+    toast.message("Time's up - submitting your test.");
     void finalizeAndGo();
   }, [finalizeAndGo]);
 
@@ -419,7 +419,7 @@ export default function ExamRoomView({ attemptId }: { attemptId: string }) {
           <span className="w-7 h-7 rounded-full bg-[#1b3a5c] text-white flex items-center justify-center text-sm">
             P
           </span>
-          Prepify — CBT Practice
+          Quero - CBT Practice
         </div>
         <div className="flex items-center gap-4 text-xs sm:text-sm">
           <div className="w-9 h-9 rounded border border-black/20 flex items-center justify-center text-base shrink-0">

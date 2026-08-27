@@ -219,7 +219,7 @@ export function AdminLegalClient() {
                 {p.sections && <span className="rounded-full bg-primary/10 text-primary text-[10px] font-semibold px-2 py-0.5">Accordion</span>}
               </div>
               <div className="text-[11px] text-muted-foreground">
-                /{p.slug === "contact" ? "contact" : p.slug === "privacy-policy" || p.slug === "terms" || p.slug === "refund-policy" ? p.slug : `legal/${p.slug}`} · updated {p.updated_at ? new Date(p.updated_at).toLocaleDateString() : "—"}
+                /{p.slug === "contact" ? "contact" : p.slug === "privacy-policy" || p.slug === "terms" || p.slug === "refund-policy" ? p.slug : `legal/${p.slug}`} · updated {p.updated_at ? new Date(p.updated_at).toLocaleDateString() : "-"}
               </div>
             </div>
             <div className="flex gap-1">

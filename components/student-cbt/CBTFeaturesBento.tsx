@@ -30,7 +30,7 @@ export default function CBTFeaturesBento() {
                   Negative Marking Audit & Prevention Shield
                 </h3>
                 <p className="text-zinc-400 text-sm leading-relaxed mb-6 max-w-xl">
-                  In JEE and NEET, losing 1 mark to a wrong answer can drop rank by 2,000 positions. Prepify isolates questions where blind guessing cost marks versus questions where strategic skipping saved your score.
+                  In JEE and NEET, losing 1 mark to a wrong answer can drop rank by 2,000 positions. Quero isolates questions where blind guessing cost marks versus questions where strategic skipping saved your score.
                 </p>
               </div>
 
@@ -94,7 +94,7 @@ export default function CBTFeaturesBento() {
               {/* Explicit Visual Offline Status Badge */}
               <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs font-mono text-amber-300 flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
-                <span>Working Offline — Progress Saved</span>
+                <span>Working Offline - Progress Saved</span>
               </div>
             </div>
           </Reveal>
